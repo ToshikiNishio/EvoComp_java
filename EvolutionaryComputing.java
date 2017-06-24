@@ -10,5 +10,8 @@ public class EvolutionaryComputing {
         Utility.setRUN_MAX(30);
         System.out.println("RUN_MAX=" + Utility.getRUN_MAX());
         System.out.println(ProblemUtil.Basic_ProblemID.Quadric.getLower());
+
+        Individual ind1 = new Individual();
+        System.out.println(ind1.positon[0]);
     }
 }
