@@ -9,6 +9,6 @@ public class EvolutionaryComputing {
         System.out.println("DIM=" + Utility.getDIMENSION());
         Utility.setRUN_MAX(30);
         System.out.println("RUN_MAX=" + Utility.getRUN_MAX());
-
+        System.out.println(ProblemUtil.Basic_ProblemID.Quadric.getLower());
     }
 }
