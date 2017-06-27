@@ -30,5 +30,7 @@ public class Utility {
         Utility.RUN_MAX = RUN_MAX;
     }
 
+    public  static double square(double x){return x * x;}
+
 }
 

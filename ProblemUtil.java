@@ -6,7 +6,15 @@ public class ProblemUtil {
     private ProblemUtil() {}
 
     public enum Basic_ProblemID {
-        Sphere                  (-100.00, 100.00);
+        Sphere                  (-100.00, 100.00) {
+            double calc_fit(double pos[]){
+                double fit = 0;
+                for (double dim_p: pos){
+                    fit += Utility.square(dim_p);
+                }
+                return fit;
+            }
+        };
 
 //        Sphere                  (-100.00, 100.00),
 //        Shwefel_P2_22           (-10.00,  10.00),
@@ -35,5 +43,6 @@ public class ProblemUtil {
         public double getUpper(){
             return upper;
         }
+        abstract double calc_fit(double pos[]);
     }
 }
