@@ -4,20 +4,31 @@
 public class ProblemUtil {
     /* Constructor */
     private ProblemUtil() {}
+
     /* Member */
-    private double Prog_Lower;
-    private double Prog_Upper;
+    private static double Prog_Lower;
+    private static double Prog_Upper;
 
-    public double getProg_Lower(){return Prog_Lower;}
-    public double getProg_Upper(){return Prog_Upper;}
-    public void setProg_Lower(double Prog_Lower){
-        this.Prog_Lower = Prog_Lower;
+    /* Setter and Getter*/
+    public static void setProg_Lower(double prog_Lower) {
+        ProblemUtil.Prog_Lower = prog_Lower;
     }
-    public void setProg_Upper(double Prog_Upper){
-        this.Prog_Upper = Prog_Upper;
+    public static double getProg_Lower() {
+        return Prog_Lower;
     }
-    
+    public static void setProg_Upper(double prog_Upper) {
+        ProblemUtil.Prog_Upper = prog_Upper;
+    }
+    public static double getProg_Upper() {
+        return Prog_Upper;
+    }
+    /* Set Bounds from problem */
+    public static void InitBounds(Basic_ProblemID id){
+        setProg_Lower(id.lower);
+        setProg_Upper(id.upper);
+    }
 
+    /* Definition of Problems*/
     public enum Basic_ProblemID {
         Sphere                  (-100.00, 100.00) {
             double calc_fit(double pos[]){

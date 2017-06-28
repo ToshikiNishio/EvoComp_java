@@ -17,5 +17,8 @@ public class EvolutionaryComputing {
         ind1.positon[3] = 5;
         System.out.println(ProblemUtil.Basic_ProblemID.Sphere.calc_fit(ind1.positon));
 
+        ProblemUtil.InitBounds(ProblemUtil.Basic_ProblemID.Sphere);
+        System.out.println("Lower = " + ProblemUtil.getProg_Lower());
+        System.out.println("Upper =" + ProblemUtil.getProg_Upper());
     }
 }
