@@ -8,30 +8,17 @@ public class ProblemUtil {
     /* Member */
     private static double Prog_Lower;
     private static double Prog_Upper;
-    private static int Problem_type;
-    enum Problem_Types {Basic, CEC2015}
 
     /* Setter and Getter*/
     private static void setProg_Lower(double prog_Lower) {ProblemUtil.Prog_Lower = prog_Lower;}
     public static double getProg_Lower() {return Prog_Lower;}
     private static void setProg_Upper(double prog_Upper) {ProblemUtil.Prog_Upper = prog_Upper;}
     public static double getProg_Upper() {return Prog_Upper;}
-
     /* Set Bounds from problem */
-    public static void setProblemID(Basic_ProblemID id){
-        ProblemUtil.Problem_type = Problem_Types.Basic.ordinal();
+    public static void InitBounds(Basic_ProblemID id){
         setProg_Lower(id.lower);
         setProg_Upper(id.upper);
     }
-    public static void setProblemID(CEC2015_ProblemID id){
-        ProblemUtil.Problem_type = Problem_Types.CEC2015.ordinal();
-        setProg_Lower(id.lower);
-        setProg_Upper(id.upper);
-    }
-//    public static void InitBounds(Basic_ProblemID id){
-//        setProg_Lower(id.lower);
-//        setProg_Upper(id.upper);
-//    }
 
     /* Definition of Problems*/
     public enum Basic_ProblemID {
@@ -73,12 +60,5 @@ public class ProblemUtil {
             return upper;
         }
         abstract double calc_fit(double pos[]);
-    }
-    public enum CEC2015_ProblemID{
-        tmp1 (),
-        tmp2;
-
-        private final double lower = -100.00;
-        private final double upper =  100.00;
     }
 }
