@@ -9,16 +9,19 @@ public class EvolutionaryComputing {
         System.out.println("DIM=" + Utility.getDIMENSION());
         Utility.setRUN_MAX(30);
         System.out.println("RUN_MAX=" + Utility.getRUN_MAX());
-        System.out.println(ProblemUtil.Basic_ProblemID.Sphere.getUpper());
+        System.out.println(ProblemUtil.ProblemID.Sphere.getUpper());
 
         Individual ind1 = new Individual();
         System.out.println(ind1.positon[0]);
         ind1.positon[0] = 2.5;
         ind1.positon[3] = 5;
-        System.out.println(ProblemUtil.Basic_ProblemID.Sphere.calc_fit(ind1.positon));
+        System.out.println(ProblemUtil.ProblemID.Sphere.calc_fit(ind1.positon));
 
-        ProblemUtil.InitBounds(ProblemUtil.Basic_ProblemID.Sphere);
+        ProblemUtil.SetProblemID(ProblemUtil.ProblemID.Sphere);
         System.out.println("Lower = " + ProblemUtil.getProg_Lower());
         System.out.println("Upper =" + ProblemUtil.getProg_Upper());
+        System.out.println("Lower = " + ProblemUtil.prob_obj.getLower());
+        System.out.println("Upper =" + ProblemUtil.prob_obj.getUpper());
+        System.out.println("fitness =" + ProblemUtil.prob_obj.calc_fit(ind1.positon));
     }
 }

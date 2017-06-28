@@ -8,6 +8,7 @@ public class ProblemUtil {
     /* Member */
     private static double Prog_Lower;
     private static double Prog_Upper;
+    public static ProblemID prob_obj;
 
     /* Setter and Getter*/
     private static void setProg_Lower(double prog_Lower) {ProblemUtil.Prog_Lower = prog_Lower;}
@@ -15,13 +16,14 @@ public class ProblemUtil {
     private static void setProg_Upper(double prog_Upper) {ProblemUtil.Prog_Upper = prog_Upper;}
     public static double getProg_Upper() {return Prog_Upper;}
     /* Set Bounds from problem */
-    public static void InitBounds(Basic_ProblemID id){
+    public static void SetProblemID(ProblemID id){
+        ProblemUtil.prob_obj = id;
         setProg_Lower(id.lower);
         setProg_Upper(id.upper);
     }
 
     /* Definition of Problems*/
-    public enum Basic_ProblemID {
+    public enum ProblemID {
         Sphere                  (-100.00, 100.00) {
             double calc_fit(double pos[]){
                 double fit = 0;
@@ -44,11 +46,12 @@ public class ProblemUtil {
 //        Ackley                  (-32.00,  32.00),
 //        Griewank                (-600.00, 600.00),
 //        Generalized_Penalized   (-50.00,  50.00);
+        /* CEC2015 */
 
         private final double lower;
         private final double upper;
 
-        Basic_ProblemID(double lower, double upper) {
+        ProblemID(double lower, double upper) {
             this.lower = lower;
             this.upper = upper;
         }
