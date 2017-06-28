@@ -21,8 +21,8 @@ public class EvolutionaryComputing {
         System.out.println("Lower = " + ProblemUtil.getProg_Lower());
         System.out.println("Upper =" + ProblemUtil.getProg_Upper());
         ProblemUtil.SetProblemID(ProblemUtil.ProblemID.Shwefel_P2_22);
-        System.out.println("Lower = " + ProblemUtil.prob_obj.getLower());
-        System.out.println("Upper =" + ProblemUtil.prob_obj.getUpper());
-        System.out.println("fitness =" + ProblemUtil.prob_obj.calc_fit(ind1.positon));
+        System.out.println("Lower = " + ProblemUtil.getProg_Lower());
+        System.out.println("Upper =" + ProblemUtil.getProg_Upper());
+        System.out.println("fitness =" + ProblemUtil.getFitness(ind1.positon));
     }
 }

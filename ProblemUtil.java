@@ -8,16 +8,19 @@ public class ProblemUtil {
     /* Member */
     private static double Prog_Lower;
     private static double Prog_Upper;
-    public static ProblemID prob_obj;
+    private static ProblemID prob_obj;
 
     /* Setter and Getter*/
     private static void setProg_Lower(double prog_Lower) {ProblemUtil.Prog_Lower = prog_Lower;}
     public static double getProg_Lower() {return Prog_Lower;}
     private static void setProg_Upper(double prog_Upper) {ProblemUtil.Prog_Upper = prog_Upper;}
     public static double getProg_Upper() {return Prog_Upper;}
-    /* Set Bounds from problem */
+
+    private static void setProb_obj(ProblemID id){ProblemUtil.prob_obj = id;}
+    public static double getFitness(double pos[]){return prob_obj.calc_fit(pos);}
+    /* Set Bounds from problemID and we can use method getFitness() */
     public static void SetProblemID(ProblemID id){
-        ProblemUtil.prob_obj = id;
+        setProb_obj(id);
         setProg_Lower(id.lower);
         setProg_Upper(id.upper);
     }
@@ -72,5 +75,7 @@ public class ProblemUtil {
             return upper;
         }
         abstract double calc_fit(double pos[]);
+
+
     }
 }
