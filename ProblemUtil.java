@@ -28,30 +28,25 @@ public class ProblemUtil {
         setProg_Lower(id.lower);
         setProg_Upper(id.upper);
     }
+//    public static void InitBounds(Basic_ProblemID id){
+//        setProg_Lower(id.lower);
+//        setProg_Upper(id.upper);
+//    }
 
     /* Definition of Problems*/
     public enum Basic_ProblemID {
         Sphere                  (-100.00, 100.00) {
             double calc_fit(double pos[]){
                 double fit = 0;
-                for (double dim_p : pos){
+                for (double dim_p: pos){
                     fit += Utility.square(dim_p);
                 }
                 return fit;
             }
-        },
-        Shwefel_P2_22           (-10.00,  10.00){
-            double calc_fit(double pos[]){
-                double fit = 0;
-                double tmp = 1;
-                for(double dim_p : pos){
-                    fit += Math.abs(dim_p);
-                    tmp *= Math.abs(dim_p);
-                }
-                fit += tmp;
-                return fit;
-            }
         };
+
+//        Sphere                  (-100.00, 100.00),
+//        Shwefel_P2_22           (-10.00,  10.00),
 //        Quadric                 (-100.00, 100.00),
 //        Rosenbrock              (-10.00,  10.00),
 //        Step                    (-100.00, 100.00),

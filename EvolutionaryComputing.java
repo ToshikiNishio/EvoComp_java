@@ -19,7 +19,6 @@ public class EvolutionaryComputing {
 
         ProblemUtil.setProblemID(ProblemUtil.Basic_ProblemID.Sphere);
         ProblemUtil.setProblemID(ProblemUtil.CEC2015_ProblemID.tmp1);
-        ProblemUtil.setProblemID(ProblemUtil.Basic_ProblemID.Shwefel_P2_22);
         System.out.println("Lower = " + ProblemUtil.getProg_Lower());
         System.out.println("Upper =" + ProblemUtil.getProg_Upper());
     }
