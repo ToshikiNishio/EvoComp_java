@@ -10,18 +10,10 @@ public class ProblemUtil {
     private static double Prog_Upper;
 
     /* Setter and Getter*/
-    public static void setProg_Lower(double prog_Lower) {
-        ProblemUtil.Prog_Lower = prog_Lower;
-    }
-    public static double getProg_Lower() {
-        return Prog_Lower;
-    }
-    public static void setProg_Upper(double prog_Upper) {
-        ProblemUtil.Prog_Upper = prog_Upper;
-    }
-    public static double getProg_Upper() {
-        return Prog_Upper;
-    }
+    public static void setProg_Lower(double prog_Lower) {ProblemUtil.Prog_Lower = prog_Lower;}
+    public static double getProg_Lower() {return Prog_Lower;}
+    public static void setProg_Upper(double prog_Upper) {ProblemUtil.Prog_Upper = prog_Upper;}
+    public static double getProg_Upper() {return Prog_Upper;}
     /* Set Bounds from problem */
     public static void InitBounds(Basic_ProblemID id){
         setProg_Lower(id.lower);
