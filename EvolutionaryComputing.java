@@ -4,12 +4,11 @@
 public class EvolutionaryComputing {
     public static void main(String[] args) throws Exception{
         Utility.setMAX_FUNC_EVAL(200000);
-        System.out.println("FEs=" + Utility.getMAX_FUNC_EVAL());
         Utility.setDIMENSION(30);
-        System.out.println("DIM=" + Utility.getDIMENSION());
         Utility.setRUN_MAX(30);
-        System.out.println("RUN_MAX=" + Utility.getRUN_MAX());
-        System.out.println(ProblemUtil.ProblemID.Sphere.getUpper());
+        Utility.setRnd(1234);
+        ProblemUtil.SetProblemID(ProblemUtil.ProblemID.Sphere);
+
 
         Individual ind1 = new Individual();
         System.out.println(ind1.positon[0]);
@@ -17,12 +16,18 @@ public class EvolutionaryComputing {
         ind1.positon[3] = 5;
         System.out.println(ProblemUtil.ProblemID.Sphere.calc_fit(ind1.positon));
 
-        ProblemUtil.SetProblemID(ProblemUtil.ProblemID.Sphere);
         System.out.println("Lower = " + ProblemUtil.getProg_Lower());
         System.out.println("Upper =" + ProblemUtil.getProg_Upper());
         ProblemUtil.SetProblemID(ProblemUtil.ProblemID.Shwefel_P2_22);
         System.out.println("Lower = " + ProblemUtil.getProg_Lower());
         System.out.println("Upper =" + ProblemUtil.getProg_Upper());
         System.out.println("fitness =" + ProblemUtil.getFitness(ind1.positon));
+
+
+        Individual ind2 = new Individual();
+        for (double dim_p : ind2.positon) {
+            System.out.println("x[] = " + dim_p);
+        }
+        System.out.println("fitness =" + ProblemUtil.getFitness(ind2.positon));
     }
 }
