@@ -9,6 +9,7 @@ public class Utility {
     private static int MAX_FUNC_EVAL;
     private static int DIMENSION;
     private static int RUN_MAX;
+    public static Sfmt Rnd;
 
     /* Method */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
@@ -29,8 +30,11 @@ public class Utility {
     public static void setRUN_MAX(int RUN_MAX) {
         Utility.RUN_MAX = RUN_MAX;
     }
+    public static void setRnd(int seed){Utility.Rnd = new Sfmt(seed);}
 
-    public  static double square(double x){return x * x;}
+
+    public static double rand(){return Rnd.NextUnif();}
+    public static double square(double x){return x * x;}
 
 }
 
