@@ -15,4 +15,11 @@ public class Individual {
         }
         current_fitness = ProblemUtil.calcFitness(positon);
     }
+
+    public void printIndivisual(){
+        for (int i = 0; i<Utility.getDIMENSION(); i++) {
+            System.out.println("position[" + i + "] = " + positon[i]);
+        }
+        System.out.println("current_fitness = " + current_fitness);
+    }
 }
