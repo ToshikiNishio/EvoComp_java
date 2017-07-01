@@ -24,7 +24,9 @@ public class EvolutionaryComputing {
         System.out.println("fitness =" + ProblemUtil.calcFitness(ind1.positon));
 
 
-        Individual ind2 = new Individual();
+        Particle ind2 = new Particle();
         ind2.printIndivisual();
+        ind2.printCurrentFitness();
+        ind2.printHistBestFitness();
     }
 }
