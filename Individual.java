@@ -6,7 +6,7 @@ public class Individual {
     double current_fitness;
 
 
-    /* Constructor */
+    /* Generate individual */
     public Individual(){
         for (int dim = 0 ; dim < Utility.getDIMENSION() ; dim++) {
             double lower = ProblemUtil.getProg_Lower();
