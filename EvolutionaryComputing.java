@@ -25,9 +25,10 @@ public class EvolutionaryComputing {
 
 
         Individual ind2 = new Individual();
-        for (double dim_p : ind2.positon) {
-            System.out.println("x[] = " + dim_p);
+        for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
+            System.out.println("x[] = " + ind2.positon[dim]);
         }
-        System.out.println("fitness =" + ProblemUtil.calcFitness(ind2.positon));
+        System.out.println("current_fitness = " + ProblemUtil.calcFitness(ind2.positon));
+        System.out.println("hist_best_fit = " );
     }
 }
