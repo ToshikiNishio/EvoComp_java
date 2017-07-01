@@ -7,7 +7,7 @@ public class EvolutionaryComputing {
         Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
         Utility.setRnd(1234);
-        ProblemUtil.SetProblemID(ProblemUtil.ProblemID.Sphere);
+        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Sphere);
 
 
         Individual ind1 = new Individual();
@@ -18,16 +18,16 @@ public class EvolutionaryComputing {
 
         System.out.println("Lower = " + ProblemUtil.getProg_Lower());
         System.out.println("Upper =" + ProblemUtil.getProg_Upper());
-        ProblemUtil.SetProblemID(ProblemUtil.ProblemID.Shwefel_P2_22);
+        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Shwefel_P2_22);
         System.out.println("Lower = " + ProblemUtil.getProg_Lower());
         System.out.println("Upper =" + ProblemUtil.getProg_Upper());
-        System.out.println("fitness =" + ProblemUtil.getFitness(ind1.positon));
+        System.out.println("fitness =" + ProblemUtil.calcFitness(ind1.positon));
 
 
         Individual ind2 = new Individual();
         for (double dim_p : ind2.positon) {
             System.out.println("x[] = " + dim_p);
         }
-        System.out.println("fitness =" + ProblemUtil.getFitness(ind2.positon));
+        System.out.println("fitness =" + ProblemUtil.calcFitness(ind2.positon));
     }
 }

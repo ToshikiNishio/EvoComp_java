@@ -15,15 +15,15 @@ public class ProblemUtil {
     public static double getProg_Lower() {return Prog_Lower;}
     private static void setProg_Upper(double prog_Upper) {ProblemUtil.Prog_Upper = prog_Upper;}
     public static double getProg_Upper() {return Prog_Upper;}
-
     private static void setProb_obj(ProblemID id){ProblemUtil.prob_obj = id;}
-    public static double getFitness(double pos[]){return prob_obj.calc_fit(pos);}
-    /* Set Bounds from problemID and we can use method getFitness() */
-    public static void SetProblemID(ProblemID id){
+
+    /* Set Bounds from problemID and we can use method calcFitness() */
+    public static void setProblemID(ProblemID id){
         setProb_obj(id);
         setProg_Lower(id.lower);
         setProg_Upper(id.upper);
     }
+    public static double calcFitness(double pos[]){return prob_obj.calc_fit(pos);}
 
     /* Definition of Problems*/
     public enum ProblemID {
