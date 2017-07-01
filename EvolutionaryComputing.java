@@ -28,5 +28,11 @@ public class EvolutionaryComputing {
         ind2.printIndivisual();
         ind2.printCurrentFitness();
         ind2.printHistBestFitness();
+
+        SubSwarm sub1 = new SubSwarm(20);
+        for (Particle par : sub1.particles) {
+            System.out.println("----------------------------------------------");
+            par.printIndivisual();
+        }
     }
 }
