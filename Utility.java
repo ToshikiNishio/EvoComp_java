@@ -32,7 +32,7 @@ public class Utility {
     }
 
     /* SIMD-oriented Fast Mersenne Twister */
-    public static void setRnd(int seed){Utility.Rnd = new Sfmt(seed);}
+    public static void setRandSeed(int seed){Utility.Rnd = new Sfmt(seed);}
     public static double rand(){return Rnd.NextUnif();}
 
     /* Utility method */

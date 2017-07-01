@@ -6,7 +6,7 @@ public class EvolutionaryComputing {
         Utility.setMAX_FUNC_EVAL(200000);
         Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
-        Utility.setRnd(1234);
+        Utility.setRandSeed(1234);
         ProblemUtil.setProblemID(ProblemUtil.ProblemID.Sphere);
 
 
