@@ -34,5 +34,11 @@ public class EvolutionaryComputing {
             System.out.println("----------------------------------------------");
             par.printIndivisual();
         }
+        System.out.println("----------------------------------------------");
+        for (int i = 0; i < sub1.particles.size(); i++) {
+            System.out.print(i + " : ");
+            sub1.particles.get(i).printHistBestFitness();
+        }
+        sub1.printLbest();
     }
 }
