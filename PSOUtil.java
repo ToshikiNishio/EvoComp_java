@@ -6,9 +6,11 @@ public class PSOUtil {
     private PSOUtil() {}
 
     /* Member */
-    private static double MAX_MAGNITUDE_VELOCITY;
-    private static double MAX_IW;   //Maximum inertia weight
-    private static double MIN_IW;   //Minimum inertia weight
+    private static double MAX_MAGNITUDE_VELOCITY = 0.2;
+    private static double MAX_IW = 0.9;   //Maximum inertia weight
+    private static double MIN_IW = 0.4;   //Minimum inertia weight
+    private static double C1 = 2.0;       //Acceleration Coefficients 1
+    private static double C2 = 2.0;       //Acceleration Coefficients 2
 
     /* Getter */
     public static double getMAX_MAGNITUDE_VELOCITY() {return MAX_MAGNITUDE_VELOCITY;}
