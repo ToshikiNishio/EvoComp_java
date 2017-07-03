@@ -12,6 +12,8 @@ public class PSOUtil {
     private static double C1 = 2.0;       //Acceleration Coefficients 1
     private static double C2 = 2.0;       //Acceleration Coefficients 2
 
+    public static double currentIW;
+
     /* Getter */
     public static double getMAX_MAGNITUDE_VELOCITY() {return MAX_MAGNITUDE_VELOCITY;}
     public static double getMAX_IW() {return MAX_IW;}
