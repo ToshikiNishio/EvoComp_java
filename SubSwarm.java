@@ -60,4 +60,20 @@ public class SubSwarm {
         }
 
     }
+    public void updatePosition(){
+        double Lower = ProblemUtil.getProg_Lower();
+        double Upper = ProblemUtil.getProg_Upper();
+
+        for (Particle par : particles) {
+            for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
+                par.positon[dim] += par.velocity[dim];
+                
+                if (par.positon[dim] < Lower){
+                    par.positon[dim] = Math.min(Upper, 2 * Lower - par.positon[dim]);
+                }else if (par.positon[dim] > Upper){
+                    par.positon[dim] = Math.max(Lower, 2 * Upper - par.positon[dim]);
+                }
+            }
+        }
+    }
 }
