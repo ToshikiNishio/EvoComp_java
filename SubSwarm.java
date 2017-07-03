@@ -5,11 +5,11 @@ import java.util.ArrayList;
  */
 public class SubSwarm {
     public ArrayList<Particle> particles =new ArrayList<Particle>();
-
     /* Lbest is Gbest in global-version PSO */
     private int Lbest_index;
     private double Lbest_fitness;
 
+    /* Initialize particles */
     public SubSwarm(int createParticleNum) {
         Lbest_fitness = Double.MAX_VALUE;
         for (int par_i = 0; par_i < createParticleNum; par_i++) {
