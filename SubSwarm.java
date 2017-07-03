@@ -35,13 +35,29 @@ public class SubSwarm {
         double c2 = PSOUtil.getC2();
         double w  = PSOUtil.currentIW;
         int    G  = Lbest_index;
+        double MAX_V = (ProblemUtil.getProg_Upper() - ProblemUtil.getProg_Lower()) * PSOUtil.getMAX_MAGNITUDE_VELOCITY();
+
+        double x;
+        double hist_x;
+        double G_hist_x;
 
         for (Particle par : particles) {
             for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
+                x = par.positon[dim];
+                hist_x = par.hist_best_pos[dim];
+                G_hist_x = particles.get(G).hist_best_pos[dim];
+
                 par.velocity[dim] = w * par.velocity[dim]
-                                    + c1 * Utility.rand() * (par.hist_best_pos[dim] - par.positon[dim])
-                                    + c2 * Utility.rand() * (particles.get(G).hist_best_pos[dim] - par.positon[dim]);
+                                    + c1 * Utility.rand() * (hist_x - x)
+                                    + c2 * Utility.rand() * (G_hist_x - x);
+                if (par.velocity[dim] < -MAX_V) {
+                    par.velocity[dim] = -MAX_V;
+                }
+                else if (par.velocity[dim] > MAX_V) {
+                    par.velocity[dim] = MAX_V;
+                }
             }
         }
+
     }
 }
