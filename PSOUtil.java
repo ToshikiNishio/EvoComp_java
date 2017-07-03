@@ -16,6 +16,8 @@ public class PSOUtil {
     public static double getMAX_MAGNITUDE_VELOCITY() {return MAX_MAGNITUDE_VELOCITY;}
     public static double getMAX_IW() {return MAX_IW;}
     public static double getMIN_IW() {return MIN_IW;}
+    public static double getC1() {return C1;}
+    public static double getC2() {return C2;}
 
 
 }
