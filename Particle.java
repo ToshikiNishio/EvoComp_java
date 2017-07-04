@@ -15,6 +15,17 @@ public class Particle extends Individual{
         }
     }
 
+    public void evaluateParticle(){
+        super.evaluateIndividual();
+        /* Compare current fitness & position with historical fitness & position */
+        if (current_fitness < hist_best_fit){
+            hist_best_fit = current_fitness;
+            for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
+                hist_best_pos[dim] = positon[dim];
+            }
+        }
+    }
+
     /* Print information of individual */
     public void printIndivisual(){
         printCurrentPosition();
