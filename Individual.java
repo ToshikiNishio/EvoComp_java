@@ -13,7 +13,7 @@ public class Individual {
             double upper = ProblemUtil.getProg_Upper();
             positon[dim] = lower + (upper - lower) * Utility.rand();
         }
-        current_fitness = ProblemUtil.calcFitness(positon);
+        evaluateIndividual();
     }
 
     public void evaluateIndividual(){
