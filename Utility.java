@@ -11,6 +11,9 @@ public class Utility {
     private static int RUN_MAX;
     public static Sfmt Rnd;
 
+    public static int cur_func_eval;
+    public static int cur_generation;
+
     /* Set Parameter */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
         Utility.MAX_FUNC_EVAL = MAX_FUNC_EVAL;
