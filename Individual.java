@@ -16,6 +16,13 @@ public class Individual {
         current_fitness = ProblemUtil.calcFitness(positon);
     }
 
+    public void evaluateIndividual(){
+        if (Utility.cur_func_eval == Utility.getMAX_FUNC_EVAL())
+            return;
+
+        current_fitness = ProblemUtil.calcFitness(positon);
+    }
+
     /* Print information of individual */
     public void printIndivisual(){
         printCurrentPosition();
