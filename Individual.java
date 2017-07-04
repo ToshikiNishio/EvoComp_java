@@ -21,6 +21,7 @@ public class Individual {
             return;
 
         current_fitness = ProblemUtil.calcFitness(positon);
+        Utility.cur_func_eval++;
     }
 
     /* Print information of individual */
