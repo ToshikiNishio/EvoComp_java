@@ -20,6 +20,7 @@ public class SubSwarm {
     }
 
     public int getLbest_index() {return Lbest_index;}
+    public double getLbest_fitness() {return Lbest_fitness;}
     /* If argument is better than Lbest, we set argument Lbest.  */
     /* Consider better method name */
     public void judgeParticleLbest(Particle par, int par_i) {
