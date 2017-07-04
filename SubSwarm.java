@@ -76,4 +76,11 @@ public class SubSwarm {
             }
         }
     }
+    public void evaluateSubSwarm(){
+        for (int par_i = 0; par_i < particles.size(); par_i++) {
+            Particle par = particles.get(par_i);
+            par.evaluateParticle();
+            judgeParticleLbest(par, par_i);
+        }
+    }
 }
