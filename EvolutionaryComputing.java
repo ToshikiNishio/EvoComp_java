@@ -4,7 +4,7 @@
 public class EvolutionaryComputing {
     public static void main(String[] args) throws Exception{
         Utility.setMAX_FUNC_EVAL(1000);
-        Utility.setDIMENSION(2);
+        Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
         Utility.setRandSeed(1234);
         ProblemUtil.setProblemID(ProblemUtil.ProblemID.Sphere);
@@ -19,6 +19,8 @@ public class EvolutionaryComputing {
             sub1.updateVelocity();
             sub1.updatePosition();
             sub1.evaluateSubSwarm();
+            //sub1.particles.get(0).printIndivisual();
+            sub1.printSubSwarm();
 
             PSOUtil.currentIW = PSOUtil.getMAX_IW() - (PSOUtil.getMAX_IW() - PSOUtil.getMIN_IW())
                                                         * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();

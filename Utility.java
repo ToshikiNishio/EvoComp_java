@@ -42,8 +42,15 @@ public class Utility {
     public static double square(double x){return x * x;}
     public static void printLine(){
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
-
     }
-
+    public static void printindLine(int num){
+        System.out.println(String.format("----- ind = " + "%05d" + " ------------------------------------------------------------------------------------------------------------------------------------------------", num));
+    }
+    public static void printStarLine(){
+        System.out.println("**********************************************************************************************************************************************************");
+    }
+    public static void printDevideGeneration(int curGen, int curEval ,int lbestInd){
+        System.out.println(String.format("***** Generation = " + "%7d" + " *** Evaluation = " + "%9d" + " *** lbestIndex = " + "%3d" + " ****************************************************************************************", curGen, curEval, lbestInd));
+    }
 }
 

@@ -36,7 +36,6 @@ public class SubSwarm {
         double c2 = PSOUtil.getC2();
         double w  = PSOUtil.currentIW;
         int    G  = Lbest_index;
-        System.out.println("G = " + G);
         double MAX_V = (ProblemUtil.getProg_Upper() - ProblemUtil.getProg_Lower()) * PSOUtil.getMAX_MAGNITUDE_VELOCITY();
 
         double x;
@@ -84,5 +83,15 @@ public class SubSwarm {
             par.evaluateParticle();
             judgeParticleLbest(par, par_i);
         }
+    }
+
+    /* Print information of SubSwarm */
+    public void printSubSwarm(){
+        Utility.printDevideGeneration(Utility.cur_generation, Utility.cur_func_eval, Lbest_index);
+        for (int par_i = 0; par_i < particles.size() ; par_i++) {
+            Utility.printindLine(par_i);
+            particles.get(par_i).printIndivisual();
+        }
+
     }
 }

@@ -35,16 +35,20 @@ public class Particle extends Individual{
         printHistBestFitness();
     }
     public void printVelocity(){
+        System.out.print("Velocity = ");
         for (int i = 0; i<Utility.getDIMENSION(); i++){
-            System.out.println("velocity[" + i + "] = " + velocity[i]);
+            System.out.printf(" %f", velocity[i]);
         }
+        System.out.println();
     }
     public void printHistBestPosition() {
+        System.out.print("Hist_best_position = ");
         for (int i = 0; i<Utility.getDIMENSION(); i++) {
-            System.out.println("hist_best_position[" + i + "] = " + hist_best_pos[i]);
+            System.out.printf(" %f", hist_best_pos[i]);
         }
+        System.out.println();
     }
     public void printHistBestFitness() {
-        System.out.println("his_best_fitness = " + hist_best_fit);
+        System.out.println("His_best_fitness = " + hist_best_fit);
     }
 }
