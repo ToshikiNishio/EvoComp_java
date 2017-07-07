@@ -12,12 +12,6 @@ public class EvolutionaryComputing {
         Utility.cur_func_eval = 0;
         Utility.cur_generation = 0;
         SubSwarm sub1 = new SubSwarm(PSOUtil.getSUB_SWARM_SIZE());
-        for (Particle par:sub1.particles) {
-            par.printIndivisual();
-            System.out.println("----------------------------------------------");
-        }
-        System.out.println("Lbest_fit = " + sub1.getLbest_fitness());
-        System.out.println();
 
         PSOUtil.currentIW = PSOUtil.getMAX_IW();
 
@@ -25,19 +19,10 @@ public class EvolutionaryComputing {
             sub1.updateVelocity();
             sub1.updatePosition();
             sub1.evaluateSubSwarm();
-            for (Particle par:sub1.particles) {
-                par.printIndivisual();
-                System.out.println("----------------------------------------------");
-            }
-            System.out.println("Lbest_fit = " + sub1.getLbest_fitness());
-            System.out.println();
-
 
             PSOUtil.currentIW = PSOUtil.getMAX_IW() - (PSOUtil.getMAX_IW() - PSOUtil.getMIN_IW())
                                                         * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
             Utility.cur_generation ++;
-            System.out.println("Lbest_fit = " + sub1.getLbest_fitness());
-
         }
 
 //        for (Particle par : sub1.particles) {
