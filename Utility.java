@@ -40,6 +40,10 @@ public class Utility {
 
     /* Utility method */
     public static double square(double x){return x * x;}
+    public static void printLine(){
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+    }
 
 }
 
