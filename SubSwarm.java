@@ -36,6 +36,7 @@ public class SubSwarm {
         double c2 = PSOUtil.getC2();
         double w  = PSOUtil.currentIW;
         int    G  = Lbest_index;
+        System.out.println("G = " + G);
         double MAX_V = (ProblemUtil.getProg_Upper() - ProblemUtil.getProg_Lower()) * PSOUtil.getMAX_MAGNITUDE_VELOCITY();
 
         double x;
