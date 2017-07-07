@@ -49,8 +49,9 @@ public class Utility {
     public static void printStarLine(){
         System.out.println("**********************************************************************************************************************************************************");
     }
-    public static void printDevideGeneration(int curGen, int curEval ,int lbestInd){
-        System.out.println(String.format("***** Generation = " + "%7d" + " *** Evaluation = " + "%9d" + " *** lbestIndex = " + "%3d" + " ****************************************************************************************", curGen, curEval, lbestInd));
+    public static void printDevideGeneration(int curGen, int curEval ,int lbestInd, double lbestFit){
+        System.out.println(String.format("***** Generation = " + "%7d" + " *** Evaluation = " + "%9d" + " *** lbestIndex = " + "%3d" +
+                " **** lbestFitness = " + lbestFit + " *******************************************", curGen, curEval, lbestInd, lbestFit));
     }
 }
 

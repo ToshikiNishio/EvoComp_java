@@ -11,7 +11,7 @@ public class PSOUtil {
     private static double MIN_IW = 0.4;   //Minimum inertia weight
     private static double C1 = 2.0;       //Acceleration Coefficients 1
     private static double C2 = 2.0;       //Acceleration Coefficients 2
-    private static int    SUB_SWARM_SIZE = 20;
+    private static int    SUB_SWARM_SIZE = 3;
 
     public static double currentIW;
 
