@@ -9,7 +9,7 @@ public class Particle extends Individual{
     /* Generate particle */
     public Particle(){
         hist_best_fit = super.current_fitness;
-        hist_best_pos = super.positon;
+        hist_best_pos = super.positon.clone();
         for (int dim = 0 ; dim < Utility.getDIMENSION() ; dim++) {
             velocity[dim] = 0;
         }
