@@ -5,14 +5,20 @@ public class Utility {
     /* Constructor */
     private Utility(){}
 
-    /* Member */
+    /* Parameter setting */
     private static int MAX_FUNC_EVAL;
     private static int DIMENSION;
     private static int RUN_MAX;
     public static Sfmt Rnd;
-
+    /* Current parameter */
     public static int cur_func_eval;
     public static int cur_generation;
+    /* For output */
+    public static double ave;
+    public static double std;
+    public static double min;
+    public static double max;
+    public static double meanGeneration;
 
     /* Set Parameter */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
