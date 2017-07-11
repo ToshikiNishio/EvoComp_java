@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 /**
  * Created by toshiki on 2017/06/24.
  */
@@ -90,8 +91,27 @@ public class Utility {
     }
     public static void printOutputPara(){
         printStarLine();
-        System.out.println("Average = " + ave + " Std = " + std + " Min =" + min + " Max =" + max);
+        //System.out.println("Average = " + ave + " Std = " + std + " Min =" + min + " Max =" + max);
+        System.out.print("Average = ");
+        printShortNum(ave);
+        System.out.print("  Std = ");
+        printShortNum(std);
+        System.out.print("  Min = ");
+        printShortNum(min);
+        System.out.print("  Max = ");
+        printShortNum(max);
+        System.out.println();
         printStarLine();
+    }
+    public static void printShortNum(double num){
+        double threshhold = 0.01;
+        DecimalFormat dec = new DecimalFormat("0.00");
+        DecimalFormat exp = new DecimalFormat("0.00E0");
+
+        if (Math.abs(num) < threshhold)
+            System.out.print(exp.format(num));
+        else
+            System.out.print(dec.format(num));
     }
 }
 
