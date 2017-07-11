@@ -7,9 +7,9 @@ public class EvolutionaryComputing {
         Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
         Utility.setRandSeed(1234);
-        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Sphere);
+        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Quadric_Noise);
         Utility.InitOutputPara();
-
+        long start_time = System.currentTimeMillis();
         for (int run = 0; run < Utility.getRUN_MAX() ; run++) {
             Utility.cur_func_eval = 0;
             Utility.cur_generation = 0;
@@ -32,5 +32,7 @@ public class EvolutionaryComputing {
         }
         Utility.calcOutputPara();
         Utility.printOutputPara();
+        long end_time = System.currentTimeMillis();
+        System.out.println((end_time - start_time) / 1000.0 + "s");
     }
 }
