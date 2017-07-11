@@ -32,12 +32,15 @@ public class Individual {
     public void printCurrentPosition() {
         System.out.print("Position =");
         for (int dim = 0; dim<Utility.getDIMENSION(); dim++) {
-            System.out.printf(" %f", positon[dim]);
+            System.out.print(" ");
+            Utility.printShortNum(positon[dim]);
         }
         System.out.println();
     }
     public void printCurrentFitness() {
-        System.out.println("Current_fitness = " + current_fitness);
+        System.out.print("Current_fitness = ");
+        Utility.printShortNum(current_fitness);
+        System.out.println();
     }
 
 }
