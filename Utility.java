@@ -69,7 +69,7 @@ public class Utility {
         ave = 0;
         std = 0;
         min = Double.MAX_VALUE;
-        max = -Double.MIN_VALUE;
+        max = -Double.MAX_VALUE;
         stack_hist_best_fit = new double[Utility.getDIMENSION()];
     }
     public static void calcOutputPara(){
