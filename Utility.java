@@ -1,4 +1,6 @@
 import java.text.DecimalFormat;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by toshiki on 2017/06/24.
  */
@@ -112,6 +114,13 @@ public class Utility {
             System.out.print(exp.format(num));
         else
             System.out.print(dec.format(num));
+    }
+    public static void printHourMinuteSecond(long milliSecond){
+        long second = TimeUnit.MILLISECONDS.toSeconds(milliSecond);
+        long minute = TimeUnit.MILLISECONDS.toMinutes(milliSecond);
+        long hour = TimeUnit.MILLISECONDS.toHours(milliSecond);
+
+        System.out.printf("%02dh : %02dm : %02ds", hour, minute, second);
     }
 }
 

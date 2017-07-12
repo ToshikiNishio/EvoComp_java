@@ -5,9 +5,9 @@ public class EvolutionaryComputing {
     public static void main(String[] args) throws Exception{
         Utility.setMAX_FUNC_EVAL(200000);
         Utility.setDIMENSION(30);
-        Utility.setRUN_MAX(30);
+        Utility.setRUN_MAX(3);
         Utility.setRandSeed(1234);
-        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Quadric_Noise);
+        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Sphere);
         Utility.InitOutputPara();
         long start_time = System.currentTimeMillis();
         for (int run = 0; run < Utility.getRUN_MAX() ; run++) {
@@ -33,6 +33,6 @@ public class EvolutionaryComputing {
         Utility.calcOutputPara();
         Utility.printOutputPara();
         long end_time = System.currentTimeMillis();
-        System.out.println((end_time - start_time) / 1000.0 + "s");
+        Utility.printHourMinuteSecond(end_time - start_time);
     }
 }
