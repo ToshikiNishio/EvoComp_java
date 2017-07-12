@@ -106,7 +106,7 @@ public class Utility {
         printStarLine();
     }
     public static void printShortNum(double num){
-        double threshhold = 0.01;
+        double threshhold = 1.0;
         DecimalFormat dec = new DecimalFormat("0.00");
         DecimalFormat exp = new DecimalFormat("0.00E0");
 
