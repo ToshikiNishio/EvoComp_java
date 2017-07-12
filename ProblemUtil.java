@@ -36,7 +36,7 @@ public class ProblemUtil {
                 return fit;
             }
         },
-        Shwefel_P2_22           (-10.00,  10.00){
+        Schwefel_P2_22           (-10.00,  10.00){
             double calc_fit(double pos[]) {
                 double fit = 0;
                 double tmp = 1;
