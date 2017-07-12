@@ -107,10 +107,13 @@ public class Utility {
     }
     public static void printShortNum(double num){
         double threshhold = 1.0;
+        DecimalFormat zero = new DecimalFormat("0");
         DecimalFormat dec = new DecimalFormat("0.00");
         DecimalFormat exp = new DecimalFormat("0.00E0");
 
-        if (Math.abs(num) < threshhold)
+        if (Math.abs(num) == 0)
+            System.out.print(zero.format(num));
+        else if (Math.abs(num) < threshhold)
             System.out.print(exp.format(num));
         else
             System.out.print(dec.format(num));
