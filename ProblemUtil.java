@@ -39,12 +39,13 @@ public class ProblemUtil {
         Schwefel_P2_22           (-10.00,  10.00){
             double calc_fit(double pos[]) {
                 double fit = 0;
-                double tmp = 1;
+                double tmp1 = 0;
+                double tmp2 = 1;
                 for (double dim_p : pos) {
-                    fit += Math.abs(dim_p);
-                    tmp *= Math.abs(dim_p);
+                    tmp1 += Math.abs(dim_p);
+                    tmp2 *= Math.abs(dim_p);
                 }
-                fit += tmp;
+                fit += tmp1 + tmp2;
                 return fit;
             }
         },
@@ -146,10 +147,10 @@ public class ProblemUtil {
                 double tmp2 = 1;
 
                 for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
-                    tmp1 += pos[dim];
+                    tmp1 += Utility.square(pos[dim]);
                     tmp2 *= Math.cos(pos[dim] / Math.sqrt(dim + 1));
                 }
-                fit = (1.0 / 4000) * tmp1 - tmp2 + 1;
+                fit += (1.0 / 4000) * tmp1 - tmp2 + 1;
                 return fit;
             }
         },
