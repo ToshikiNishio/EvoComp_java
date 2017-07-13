@@ -117,7 +117,7 @@ public class ProblemUtil {
                     if (Math.abs(dim_p) < 0.5)
                         y = dim_p;
                     if (Math.abs(dim_p) >= 0.5)
-                        y = Math.round(2 * dim_p) / 2;
+                        y = Math.round(2 * dim_p) / 2.0;
                     fit += Utility.square(y) - 10 * Math.cos(2 * Math.PI * y);
                 }
                 return fit;
