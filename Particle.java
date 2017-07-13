@@ -34,6 +34,10 @@ public class Particle extends Individual{
         printHistBestPosition();
         printHistBestFitness();
     }
+    public void printHistBest(){
+        printHistBestPosition();
+        printHistBestFitness();
+    }
     public void printVelocity(){
         System.out.print("Velocity = ");
         for (int i = 0; i<Utility.getDIMENSION(); i++){

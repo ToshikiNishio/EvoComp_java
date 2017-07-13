@@ -94,4 +94,7 @@ public class SubSwarm {
         }
         System.out.println();
     }
+    public void printBestParticle(){
+        particles.get(Lbest_index).printHistBest();
+    }
 }

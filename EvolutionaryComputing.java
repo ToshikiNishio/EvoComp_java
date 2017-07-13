@@ -5,9 +5,9 @@ public class EvolutionaryComputing {
     public static void main(String[] args) throws Exception{
         Utility.setMAX_FUNC_EVAL(200000);
         Utility.setDIMENSION(30);
-        Utility.setRUN_MAX(3);
+        Utility.setRUN_MAX(30);
         Utility.setRandSeed(1234);
-        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Sphere);
+        ProblemUtil.setProblemID(ProblemUtil.ProblemID.Generalized_Penalized);
         Utility.InitOutputPara();
         long start_time = System.currentTimeMillis();
         for (int run = 0; run < Utility.getRUN_MAX() ; run++) {
@@ -18,7 +18,6 @@ public class EvolutionaryComputing {
             PSOUtil.currentIW = PSOUtil.getMAX_IW();
 
             while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
-                //sub1.printSubSwarm();
                 sub1.updateVelocity();
                 sub1.updatePosition();
                 sub1.evaluateSubSwarm();
@@ -28,11 +27,19 @@ public class EvolutionaryComputing {
                 Utility.cur_generation++;
             }
             Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
-            System.out.println("run = " + run + " Best_fit = " + sub1.getLbest_fitness());
+            printFinalBest(run, sub1);
         }
         Utility.calcOutputPara();
         Utility.printOutputPara();
         long end_time = System.currentTimeMillis();
         Utility.printHourMinuteSecond(end_time - start_time);
+    }
+
+    private static void printFinalBest(int run, SubSwarm sub){
+        Utility.printLine();
+        System.out.println("run = " + run);
+        sub.printBestParticle();
+        System.out.println();
+        Utility.printLine();
     }
 }
