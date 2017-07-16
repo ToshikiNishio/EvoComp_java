@@ -70,7 +70,7 @@ public class Utility {
         std = 0;
         min = Double.MAX_VALUE;
         max = -Double.MAX_VALUE;
-        stack_hist_best_fit = new double[Utility.getDIMENSION()];
+        stack_hist_best_fit = new double[Utility.getRUN_MAX()];
     }
     public static void calcOutputPara(){
         /* Calculate average */
