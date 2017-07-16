@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 /**
  * Created by toshiki on 2017/07/02.
@@ -78,6 +79,14 @@ public class SubSwarm {
         }
     }
     public void evaluateSubSwarm(){
+
+//        particles.stream().parallel().forEachOrdered(par -> {
+//            //synchronized (par) {
+//                par.evaluateParticle();
+//                judgeParticleLbest(par, particles.indexOf(par));
+//            //}
+//        });
+
         for (int par_i = 0; par_i < particles.size(); par_i++) {
             Particle par = particles.get(par_i);
             par.evaluateParticle();
