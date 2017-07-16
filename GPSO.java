@@ -19,6 +19,6 @@ public class GPSO implements Algorithm {
             Utility.cur_generation++;
         }
         Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
-        Utility.printFinalBest(run, sub1);
+        //Utility.printFinalBest(run, sub1);
     }
 }

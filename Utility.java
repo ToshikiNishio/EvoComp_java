@@ -91,9 +91,9 @@ public class Utility {
                 max = fit;
         }
     }
-    public static void printOutputPara(){
+    public static void printOutputPara(ProblemUtil.ProblemID problemID){
         printStarLine();
-        //System.out.println("Average = " + ave + " Std = " + std + " Min =" + min + " Max =" + max);
+        System.out.println(problemID.name());
         System.out.print("Average = ");
         printShortNum(ave);
         System.out.print("  Std = ");
