@@ -96,7 +96,7 @@ public class testfunc {
 			for (i=0; i<nx; i++)
 				x_bound[i]=100.0;
 
-			if (!(nx==2||nx==10||nx==20||nx==50||nx==100))
+			if (!(nx==2||nx==10||nx==30||nx==50||nx==100))
 			{
 				System.out.println("\nError: Test functions are only defined for D=2,10,30,50,100.");
 			}
