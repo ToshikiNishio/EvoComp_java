@@ -7,39 +7,17 @@ public class EvolutionaryComputing {
         Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
         Utility.setRandSeed(1234);
+        AlgContext algContext = new AlgContext(new GPSO());
         ProblemUtil.setProblemID(ProblemUtil.ProblemID.Generalized_Penalized);
         Utility.InitOutputPara();
         long start_time = System.currentTimeMillis();
         for (int run = 0; run < Utility.getRUN_MAX() ; run++) {
-            Utility.cur_func_eval = 0;
-            Utility.cur_generation = 0;
-            SubSwarm sub1 = new SubSwarm(PSOUtil.getSUB_SWARM_SIZE());
-
-            PSOUtil.currentIW = PSOUtil.getMAX_IW();
-
-            while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
-                sub1.updateVelocity();
-                sub1.updatePosition();
-                sub1.evaluateSubSwarm();
-
-                PSOUtil.currentIW = PSOUtil.getMAX_IW() - (PSOUtil.getMAX_IW() - PSOUtil.getMIN_IW())
-                        * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
-                Utility.cur_generation++;
-            }
-            Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
-            printFinalBest(run, sub1);
+            algContext.run(run);
         }
         Utility.calcOutputPara();
         Utility.printOutputPara();
         long end_time = System.currentTimeMillis();
         Utility.printHourMinuteSecond(end_time - start_time);
-    }
-
-    private static void printFinalBest(int run, SubSwarm sub){
-        Utility.printLine();
-        System.out.println("run = " + run);
-        sub.printBestParticle();
         System.out.println();
-        Utility.printLine();
     }
 }

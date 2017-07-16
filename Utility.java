@@ -125,5 +125,12 @@ public class Utility {
 
         System.out.printf("%02dh : %02dm : %02ds", hour, minute, second);
     }
+    public static void printFinalBest(int run, SubSwarm sub){
+        Utility.printLine();
+        System.out.println("run = " + run);
+        sub.printBestParticle();
+        System.out.println();
+        Utility.printLine();
+    }
 }
 
