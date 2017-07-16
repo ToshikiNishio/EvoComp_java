@@ -185,6 +185,20 @@ public class ProblemUtil {
                         + tmp2;
                 return fit;
             }
+        },
+        CEC2015_Rotated_High_Conditioned_Elliptic   (- 100.00, 100.00){
+            double calc_fit(double pos[]){
+                testfunc tf = new testfunc();
+                double fit[] = new double[1];
+                try {
+                    tf.test_func(pos, fit, Utility.getDIMENSION(), 1, 1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                return fit[0];
+            }
+
         };
         /* CEC2015 */
 
