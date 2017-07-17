@@ -18,6 +18,7 @@ public class GPSO implements Algorithm {
                     * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
             Utility.cur_generation++;
         }
+        /* Input best particle for Output */
         Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
         //Utility.printFinalBest(run, sub1);
     }
