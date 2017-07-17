@@ -63,9 +63,19 @@ public class APSO implements Algorithm {
         double max = -Double.MAX_VALUE;
 
         for (double mdis : meanDis) {
-
+            if (min > mdis)
+                min = mdis;
+            if (max < mdis)
+                max = mdis;
         }
-        //evoFactor = (meanDis[sub.getLbest_index()] - meanDis[])
+
+        if (max == min){
+            evoFactor = 0;
+            System.out.println("evoF = 0 !");
+        } else {
+            evoFactor = (meanDis[sub.getLbest_index()] - min)
+                    / (max - min);
+        }
 
 
     }
