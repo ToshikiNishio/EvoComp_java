@@ -2,6 +2,13 @@
  * Created by toshiki on 2017/07/18.
  */
 public class APSO implements Algorithm {
+    enum EvolutionaryState{
+        Exploration,
+        Exploitation,
+        Convergence,
+        JumpingOut
+    }
+
     public void run(int run){
         double MAX_IW = 0.9;    //Maximum inertia weight
         double MIN_IW = 0.4;    //Minimum inertia weight
@@ -16,9 +23,11 @@ public class APSO implements Algorithm {
         double currentIW = MAX_IW;
         double currentC1 = INI_C1;
         double currentC2 = INI_C2;
+        EvolutionaryState state;
 
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
-            EvolutionaryStateEstimation(sub1);
+            state = EvolutionaryStateEstimation(sub1);
+            System.out.println(state);
 
             sub1.updateVelocity(currentIW, currentC1, currentC2);
             sub1.updatePosition();
@@ -34,7 +43,7 @@ public class APSO implements Algorithm {
         //Utility.printFinalBest(run, sub1);
     }
 
-    private void EvolutionaryStateEstimation(SubSwarm sub){
+    private EvolutionaryState EvolutionaryStateEstimation(SubSwarm sub){
         /* Step1 Calculate the mean distance of each particle "ind" to
         *  all the other particles. */
         int N = sub.particles.size();
@@ -76,7 +85,14 @@ public class APSO implements Algorithm {
             evoFactor = (meanDis[sub.getLbest_index()] - min)
                     / (max - min);
         }
+        /* Step3 Classify Evolutionary factor into one of four sets */
+        if (evoFactor <= (3.5 / 15.0))
+            return EvolutionaryState.Convergence;
+        if (evoFactor <= 0.5)
+            return EvolutionaryState.Exploitation;
+        if (evoFactor <= (11.5 / 15.0))
+            return EvolutionaryState.Exploration;
 
-
+        return EvolutionaryState.JumpingOut;
     }
 }
