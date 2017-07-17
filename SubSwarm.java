@@ -32,12 +32,10 @@ public class SubSwarm {
     }
     public void printLbest(){System.out.println("Lbest= " + Lbest_index);}
     /* Update particles */
-    public void updateVelocity(){
-        double c1 = PSOUtil.getC1();
-        double c2 = PSOUtil.getC2();
-        double w  = PSOUtil.currentIW;
+    public void updateVelocity(double w, double c1, double c2){
+        //double w  = PSOUtil.currentIW;
         int    G  = Lbest_index;
-        double MAX_V = (ProblemUtil.getProg_Upper() - ProblemUtil.getProg_Lower()) * PSOUtil.getMAX_MAGNITUDE_VELOCITY();
+        double MAX_V = (ProblemUtil.getProg_Upper() - ProblemUtil.getProg_Lower()) * Utility.MAX_MAGNITUDE_VELOCITY;
 
         double x;
         double hist_x;

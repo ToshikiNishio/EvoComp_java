@@ -11,7 +11,7 @@ public class Particle extends Individual{
         hist_best_fit = super.current_fitness;
         hist_best_pos = super.positon.clone();
 
-        double MAX_V = (ProblemUtil.getProg_Upper() - ProblemUtil.getProg_Lower()) * PSOUtil.getMAX_MAGNITUDE_VELOCITY();
+        double MAX_V = (ProblemUtil.getProg_Upper() - ProblemUtil.getProg_Lower()) * Utility.MAX_MAGNITUDE_VELOCITY;
         for (int dim = 0 ; dim < Utility.getDIMENSION() ; dim++) {
             //velocity[dim] = 0;
             velocity[dim] = -MAX_V + 2 * MAX_V * Utility.rand();

@@ -13,6 +13,8 @@ public class Utility {
     private static int DIMENSION;
     private static int RUN_MAX;
     public static Sfmt Rnd;
+    /* Parameter setting for PSO */
+    public static double MAX_MAGNITUDE_VELOCITY = 0.2;
     /* Current parameter */
     public static int cur_func_eval;
     public static int cur_generation;
