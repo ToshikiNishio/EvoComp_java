@@ -45,6 +45,15 @@ public class Utility {
 
     /* Utility method */
     public static double square(double x){return x * x;}
+    public static double distance(Individual ind1, Individual ind2){
+        double sum = 0;
+
+        for (int dim = 0; dim < getDIMENSION(); dim++) {
+            sum += square(ind1.positon[dim] - ind2.positon[dim]);
+        }
+        return Math.sqrt(sum);
+    }
+
     public static void printLine(){
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
