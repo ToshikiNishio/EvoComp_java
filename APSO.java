@@ -32,12 +32,12 @@ public class APSO implements Algorithm {
             state = getEvoState(evoFactor);
             System.out.println(state);
 
+            currentIW = 1.0 / (1.0 + 1.5 * Math.exp(-2.6 * evoFactor));
+            System.out.println("w = " + currentIW);
+
             sub1.updateVelocity(currentIW, currentC1, currentC2);
             sub1.updatePosition();
             sub1.evaluateSubSwarm();
-
-            currentIW = MAX_IW - (MAX_IW -MIN_IW)
-                    * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
 
             Utility.cur_generation++;
         }
