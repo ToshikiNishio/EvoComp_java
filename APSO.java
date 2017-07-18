@@ -23,10 +23,13 @@ public class APSO implements Algorithm {
         double currentIW = MAX_IW;
         double currentC1 = INI_C1;
         double currentC2 = INI_C2;
+        double evoFactor;
         EvolutionaryState state;
 
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
-            state = EvolutionaryStateEstimation(sub1);
+            evoFactor = calcEvoFactor(sub1);
+            System.out.println(evoFactor);
+            state = getEvoState(evoFactor);
             System.out.println(state);
 
             sub1.updateVelocity(currentIW, currentC1, currentC2);
@@ -43,7 +46,7 @@ public class APSO implements Algorithm {
         //Utility.printFinalBest(run, sub1);
     }
 
-    private EvolutionaryState EvolutionaryStateEstimation(SubSwarm sub){
+    private double calcEvoFactor(SubSwarm sub){
         /* Step1 Calculate the mean distance of each particle "ind" to
         *  all the other particles. */
         int N = sub.particles.size();
@@ -85,6 +88,10 @@ public class APSO implements Algorithm {
             evoFactor = (meanDis[sub.getLbest_index()] - min)
                     / (max - min);
         }
+        return evoFactor;
+    }
+
+    EvolutionaryState getEvoState(double evoFactor){
         /* Step3 Classify Evolutionary factor into one of four sets */
         if (evoFactor <= (3.5 / 15.0))
             return EvolutionaryState.Convergence;
