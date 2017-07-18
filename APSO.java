@@ -43,6 +43,8 @@ public class APSO implements Algorithm {
             /* Adaptive Parameter Control */
             currentIW = 1.0 / (1.0 + 1.5 * Math.exp(-2.6 * evoFactor));
             adaptiveAccelerationCoefficients(state, C);
+//            System.out.println(state);
+//            System.out.println("c1 =" + C[0] + " c2 =" + C[1]);
             /* Update particles as well as GPSO */
             sub1.updateVelocity(currentIW, C[0], C[1]);
             sub1.updatePosition();
@@ -117,9 +119,13 @@ public class APSO implements Algorithm {
     /* Add delta to acceleration coefficients */
     void adaptiveAccelerationCoefficients(EvolutionaryState state, double[] ac){
         /* Adjustment on acceleration coefficients bounded by delta */
-        double delta = 0.05 + Utility.rand() * 0.05;
+        double delta;
+
+        delta = 0.05 + Utility.rand() * 0.05;
         delta = Utility.rand() * delta;
         ac[0] += delta * state.addC1;
+        
+        delta = 0.05 + Utility.rand() * 0.05;
         delta = Utility.rand() * delta;
         ac[1] += delta * state.addC2;
         /* Clamp acceleration coefficients */
