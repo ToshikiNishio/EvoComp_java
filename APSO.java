@@ -3,10 +3,17 @@
  */
 public class APSO implements Algorithm {
     enum EvolutionaryState{
-        Exploration,
-        Exploitation,
-        Convergence,
-        JumpingOut
+        Exploration     ( 1.0, -1.0),
+        Exploitation    ( 0.5, -0.5),
+        Convergence     ( 0.5,  0.5),
+        JumpingOut      (-1.0,  1.0);
+
+        double addC1;
+        double addC2;
+        EvolutionaryState(double addC1, double addC2) {
+            this.addC1 = addC1;
+            this.addC2 = addC2;
+        }
     }
 
     public void run(int run){
@@ -21,24 +28,28 @@ public class APSO implements Algorithm {
 
         SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
         double currentIW = MAX_IW;
-        double currentC1 = INI_C1;
-        double currentC2 = INI_C2;
+        /* Acceleration Coefficients.
+         * C[0] : c1, C[1] : c2 */
+        double C[] = new double[2];
+        C[0] = INI_C1;
+        C[1] = INI_C2;
         double evoFactor;
         EvolutionaryState state;
 
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
+            /* Evolutionary state estimation */
             evoFactor = calcEvoFactor(sub1);
-            System.out.println(evoFactor);
             state = getEvoState(evoFactor);
-            System.out.println(state);
-
+            /* Adaptive Parameter Control */
             currentIW = 1.0 / (1.0 + 1.5 * Math.exp(-2.6 * evoFactor));
-            System.out.println("w = " + currentIW);
-
-            sub1.updateVelocity(currentIW, currentC1, currentC2);
+            adaptiveAccelerationCoefficients(state, C);
+            /* Update particles as well as GPSO */
+            sub1.updateVelocity(currentIW, C[0], C[1]);
             sub1.updatePosition();
             sub1.evaluateSubSwarm();
 
+//            currentIW = MAX_IW - (MAX_IW -MIN_IW)
+//                    * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
             Utility.cur_generation++;
         }
         /* Input best particle for Output */
@@ -101,5 +112,28 @@ public class APSO implements Algorithm {
             return EvolutionaryState.Exploration;
 
         return EvolutionaryState.JumpingOut;
+    }
+
+    /* Add delta to acceleration coefficients */
+    void adaptiveAccelerationCoefficients(EvolutionaryState state, double[] ac){
+        /* Adjustment on acceleration coefficients bounded by delta */
+        double delta = 0.05 + Utility.rand() * 0.05;
+        delta = Utility.rand() * delta;
+        ac[0] += delta * state.addC1;
+        delta = Utility.rand() * delta;
+        ac[1] += delta * state.addC2;
+        /* Clamp acceleration coefficients */
+        for (int i = 0; i < 2 ; i++) {
+            if (ac[i] <= 1.5)
+                ac[i] = 1.5;
+            if (ac[i] >= 2.5)
+                ac[i] = 2.5;
+        }
+        /* If sum is larger than 4.0, normalized */
+        double sum = ac[0] + ac[1];
+        if (sum > 4.0){
+            ac[0] = ac[0] / sum * 4.0;
+            ac[1] = ac[1] / sum * 4.0;
+        }
     }
 }
