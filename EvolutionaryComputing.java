@@ -10,11 +10,11 @@ public class EvolutionaryComputing {
 
         for (ProblemUtil.ProblemID problem : ProblemUtil.ProblemID.values()) {
             if (problem.ordinal() < 12) {
-                Utility.setRandSeed(1234);
                 ProblemUtil.setProblemID(problem);
                 Utility.InitOutputPara();
                 long start_time = System.currentTimeMillis();
                 for (int run = 0; run < Utility.getRUN_MAX(); run++) {
+                    Utility.setRandSeed(1234 + run);
                     algContext.run(run);
                 }
                 Utility.calcOutputPara();
