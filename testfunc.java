@@ -108,7 +108,7 @@ public class testfunc {
 
 			/*Load Matrix M*****************************************************/
 			//File fpt = new File("input_data/M_"+func_num+"_D"+nx+".txt");//* Load M data *
-			File fpt = new File("/Users/toshiki/IdeaProjects/CEC2015/src/input_data/M_"+func_num+"_D"+nx+".txt");//* Load M data *
+			File fpt = new File(Utility.SRC_PATH + "/input_data/M_"+func_num+"_D"+nx+".txt");//* Load M data *
 			Scanner input = new Scanner(fpt);
 			if (!fpt.exists())
 			{
@@ -169,7 +169,7 @@ public class testfunc {
 			
 			if(cf_num>1){
 				
-				fpt = new File("/Users/toshiki/IdeaProjects/CEC2015/src/input_data/bias_"+func_num+".txt");//* Load bias data *
+				fpt = new File(Utility.SRC_PATH + "/input_data/bias_"+func_num+".txt");//* Load bias data *
 				input = new Scanner(fpt);
 				if (!fpt.exists())
 				{
@@ -190,7 +190,7 @@ public class testfunc {
 			
 			/*Load shift_data***************************************************/
 			
-			fpt=new File("/Users/toshiki/IdeaProjects/CEC2015/src/input_data/shift_data_"+func_num+".txt");
+			fpt=new File(Utility.SRC_PATH + "/input_data/shift_data_"+func_num+".txt");
 			input = new Scanner(fpt);
 			if (!fpt.exists())
 			{
@@ -306,7 +306,7 @@ public class testfunc {
 			/*Load Shuffle_data*******************************************/
 			
 			if(bShuffle[func_num]==1){
-				fpt = new File("/Users/toshiki/IdeaProjects/CEC2015/src/input_data/shuffle_data_"+func_num+"_D"+nx+".txt");
+				fpt = new File(Utility.SRC_PATH + "/input_data/shuffle_data_"+func_num+"_D"+nx+".txt");
 				input = new Scanner(fpt);
 				if (!fpt.exists())
 				{

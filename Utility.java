@@ -19,6 +19,8 @@ public class Utility {
     public static int cur_func_eval;
     public static int cur_generation;
 
+    public static String SRC_PATH = "/Users/toshiki/IdeaProjects/CEC2015/src";
+
     /* Set Parameter */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
         Utility.MAX_FUNC_EVAL = MAX_FUNC_EVAL;
