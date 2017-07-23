@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by toshiki on 2017/07/18.
  */
@@ -15,6 +17,8 @@ public class APSO implements Algorithm {
             this.addC2 = addC2;
         }
     }
+    public static ArrayList<Double> BestFit = new ArrayList<Double>();
+
 
     public void run(int run){
         double MAX_IW = 0.9;    //Maximum inertia weight
@@ -22,6 +26,7 @@ public class APSO implements Algorithm {
         double INI_C1 = 2.0;    //Acceleration Coefficients 1
         double INI_C2 = 2.0;    //Acceleration Coefficients 2
         int    SUB_SWARM_SIZE = 20;
+
 
         Utility.cur_func_eval = 0;
         Utility.cur_generation = 0;
@@ -53,6 +58,7 @@ public class APSO implements Algorithm {
 //            currentIW = MAX_IW - (MAX_IW -MIN_IW)
 //                    * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
             Utility.cur_generation++;
+            BestFit.add(sub1.getLbest_fitness());
         }
         /* Input best particle for Output */
         Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
