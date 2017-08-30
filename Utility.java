@@ -8,19 +8,19 @@ public class Utility {
     /* Constructor */
     private Utility(){}
 
-    /* Parameter setting */
+    /* Definition of Parameters */
     private static int MAX_FUNC_EVAL;
     private static int DIMENSION;
     private static int RUN_MAX;
-    public static Sfmt Rnd;
     /* Parameter setting for PSO */
     public static double MAX_MAGNITUDE_VELOCITY = 0.2;
     /* Current parameter */
     public static int cur_func_eval;
     public static int cur_generation;
-
-    public static String SRC_PATH = "/Users/toshiki/IdeaProjects/CEC2015/src";
-
+    /* Path */
+    public static String SRC_PATH = "/Users/toshiki/IdeaProjects/EvoComp_java/src";
+    /* Definition */
+    public static Sfmt Rnd;
     /* Set Parameter */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
         Utility.MAX_FUNC_EVAL = MAX_FUNC_EVAL;
