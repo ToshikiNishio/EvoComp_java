@@ -1,4 +1,5 @@
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,6 +22,11 @@ public class Utility {
     public static String SRC_PATH = "/Users/toshiki/IdeaProjects/EvoComp_java/src";
     /* Definition */
     public static Sfmt Rnd;
+    public static Date date;
+    public static void getDate(){
+        Utility.date = new Date();
+        date.toString();
+    }
     /* Set Parameter */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
         Utility.MAX_FUNC_EVAL = MAX_FUNC_EVAL;

@@ -16,6 +16,7 @@ public class ProblemUtil {
     private static void setProg_Upper(double prog_Upper) {ProblemUtil.Prog_Upper = prog_Upper;}
     public static double getProg_Upper() {return Prog_Upper;}
     private static void setProb_obj(ProblemID id){ProblemUtil.prob_obj = id;}
+    public static ProblemID getProb_obj() { return prob_obj; }
 
     /* Set Bounds from problemID and we can use method calcFitness() */
     public static void setProblemID(ProblemID id){
