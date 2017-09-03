@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class GPSO implements Algorithm {
     /* Parameter Settings */
@@ -17,6 +19,12 @@ public class GPSO implements Algorithm {
     /* Variable definition */
     String folderName;
     double currentIW;
+    /* Record variables */
+    public ArrayList<Integer> recordGeneration =new ArrayList<Integer>();
+    public ArrayList<Integer> recordEvalTimes =new ArrayList<Integer>();
+    public ArrayList<Double> recordInertiaWeight =new ArrayList<Double>();
+    public ArrayList<Double> recordBestFitness =new ArrayList<Double>();
+
     public void run(int run){
         Utility.cur_func_eval = 0;
         Utility.cur_generation = 0;
@@ -35,11 +43,14 @@ public class GPSO implements Algorithm {
                         * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
 
             Utility.cur_generation++;
-            writeFile(sub1);
+
+            recordVariables(sub1);
+            //writeFile();
         }
         /* Input best particle for Output */
         Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
         //Utility.printFinalBest(run, sub1);
+        writeFile();
     }
 
     private void makeFiles(int run){
@@ -59,7 +70,7 @@ public class GPSO implements Algorithm {
             pw.print(",");
             pw.print("eval_times");
             pw.print(",");
-            pw.print("cur_fitness");
+            pw.print("Best_fitness");
             pw.print(",");
             pw.print("inertia_weight");
             pw.print(",");
@@ -74,27 +85,40 @@ public class GPSO implements Algorithm {
         }
     }
 
-    private void writeFile(SubSwarm swarm){
+    private void writeFile(){
         try {
             FileWriter fw = new FileWriter(folderName + "/output.csv", true); //追記モード
-            //Write header
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-            pw.print(Utility.cur_generation);
-            pw.print(",");
-            pw.print(Utility.cur_func_eval);
-            pw.print(",");
-            pw.print(swarm.getLbest_fitness());
-            pw.print(",");
-            pw.print(currentIW);
-            pw.print(",");
-            pw.print(C1);
-            pw.print(",");
-            pw.print(C2);
-            pw.println();
+            int size = recordGeneration.size();
+            for (int ind =0; ind < size; ind++) {
+                pw.print(recordGeneration.get(ind));
+                pw.print(",");
+                pw.print(recordEvalTimes.get(ind));
+                pw.print(",");
+                pw.print(recordBestFitness.get(ind));
+                pw.print(",");
+                pw.print(recordInertiaWeight.get(ind));
+                pw.print(",");
+                pw.print(C1);
+                pw.print(",");
+                pw.print(C2);
+                pw.println();
+            }
             //Close file
             pw.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        recordGeneration.clear();
+        recordEvalTimes.clear();
+        recordBestFitness.clear();
+        recordInertiaWeight.clear();
+    }
+
+    private void recordVariables(SubSwarm swarm){
+        recordGeneration.add(Utility.cur_generation);
+        recordEvalTimes.add(Utility.cur_func_eval);
+        recordInertiaWeight.add(currentIW);
+        recordBestFitness.add(swarm.getLbest_fitness());
     }
 }
