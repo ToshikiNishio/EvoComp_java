@@ -2,7 +2,10 @@
  * Created by toshiki on 2017/07/17.
  */
 import java.io.File;
-import java.util.Date;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 public class GPSO implements Algorithm {
     public void run(int run){
@@ -18,7 +21,7 @@ public class GPSO implements Algorithm {
         SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
         double currentIW = MAX_IW;
 
-        mkdir(run);
+        makeFiles(run);
 
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
             sub1.updateVelocity(currentIW, C1, C2);
@@ -35,12 +38,35 @@ public class GPSO implements Algorithm {
         //Utility.printFinalBest(run, sub1);
     }
 
-    public void mkdir(int run){
+    public void makeFiles(int run){
+        /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
-        File newfile = new File("/Users/toshiki/Output/" + Utility.date + "/" + className +
-                "/" + ProblemUtil.getProb_obj() + "/RUN" + run);
-        if (newfile.mkdirs()) {
-            System.out.println("ディレクトリを作成しました");
+        String folderName = "/Users/toshiki/Output/" + Utility.date + "/" + className +
+                                    "/" + ProblemUtil.getProb_obj() + "/RUN" + run;
+        File newfile = new File(folderName);
+        newfile.mkdirs();
+        /* Make csv file */
+        try {
+            //Make csv file
+            FileWriter fw = new FileWriter(folderName + "/output.csv", false); //上書きモード
+            //Write header
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+            pw.print("Generation");
+            pw.print(",");
+            pw.print("eval_times");
+            pw.print(",");
+            pw.print("cur_fitness");
+            pw.print(",");
+            pw.print("inertia_weight");
+            pw.print(",");
+            pw.print("c1");
+            pw.print(",");
+            pw.print("c2");
+            pw.println();
+            //Close file
+            pw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }
