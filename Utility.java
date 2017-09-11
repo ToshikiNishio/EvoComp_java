@@ -150,8 +150,8 @@ public class Utility {
             System.out.print(dec.format(num));
     }
     public static void printHourMinuteSecond(long milliSecond){
-        long second = TimeUnit.MILLISECONDS.toSeconds(milliSecond);
-        long minute = TimeUnit.MILLISECONDS.toMinutes(milliSecond);
+        long second = TimeUnit.MILLISECONDS.toSeconds(milliSecond) % 60;
+        long minute = TimeUnit.MILLISECONDS.toMinutes(milliSecond) % 60;
         long hour = TimeUnit.MILLISECONDS.toHours(milliSecond);
 
         System.out.printf("%02dh : %02dm : %02ds", hour, minute, second);
