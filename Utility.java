@@ -77,12 +77,16 @@ public class Utility {
     }
 
     /* For output */
-    public static double ave;
-    public static double std;
-    public static double min;
-    public static double max;
-    public static double meanGeneration = 0;
+    private static double ave;
+    private static double std;
+    private static double min;
+    private static double max;
     public static double[] stack_hist_best_fit;
+    private static long start_time;
+    private static long end_time;
+    private static long run_time;
+
+
 
     public static void InitOutputPara(){
         ave = 0;
@@ -90,8 +94,12 @@ public class Utility {
         min = Double.MAX_VALUE;
         max = -Double.MAX_VALUE;
         stack_hist_best_fit = new double[Utility.getRUN_MAX()];
+        start_time = System.currentTimeMillis();
     }
     public static void calcOutputPara(){
+        /* Calculate run time */
+        end_time = System.currentTimeMillis();
+        run_time = end_time - start_time;
         /* Calculate average */
         for (double fit : stack_hist_best_fit) {
             ave += fit;
@@ -111,6 +119,8 @@ public class Utility {
         }
     }
     public static void printOutputPara(ProblemUtil.ProblemID problemID){
+        calcOutputPara();
+
         printStarLine();
         System.out.println(problemID.name());
         System.out.print("Average = ");
@@ -121,6 +131,8 @@ public class Utility {
         printShortNum(min);
         System.out.print("  Max = ");
         printShortNum(max);
+        System.out.println();
+        printHourMinuteSecond(run_time);
         System.out.println();
         printStarLine();
     }

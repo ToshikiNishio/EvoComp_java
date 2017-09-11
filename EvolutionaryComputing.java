@@ -14,15 +14,11 @@ public class EvolutionaryComputing {
             if (problem.ordinal() < 12) {
                 ProblemUtil.setProblemID(problem);
                 Utility.InitOutputPara();
-                long start_time = System.currentTimeMillis();
                 for (int run = 0; run < Utility.getRUN_MAX(); run++) {
                     Utility.setRandSeed(1234 + run);
                     algContext.run(run);
                 }
-                Utility.calcOutputPara();
                 Utility.printOutputPara(problem);
-                long end_time = System.currentTimeMillis();
-                Utility.printHourMinuteSecond(end_time - start_time);
                 System.out.println();
             }
         }
