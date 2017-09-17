@@ -32,7 +32,7 @@ public class GPSO implements Algorithm {
         SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
         currentIW = MAX_IW;
 
-        makeOutputFiles(run);
+        makeParameterFiles(run);
 
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
             sub1.updateVelocity(currentIW, C1, C2);
@@ -50,10 +50,13 @@ public class GPSO implements Algorithm {
         /* Input best particle for Output */
         Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
         //Utility.printFinalBest(run, sub1);
-        writeOutputFiles();
+        writeParameterFiles();
     }
 
-    private void makeOutputFiles(int run){
+    /*
+    * Follow method are to make csv files.
+    * */
+    private void makeParameterFiles(int run){
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
         folderName = "/Users/toshiki/Output/" + Utility.date + "/" + className +
@@ -85,7 +88,7 @@ public class GPSO implements Algorithm {
         }
     }
 
-    private void writeOutputFiles(){
+    private void writeParameterFiles(){
         try {
             FileWriter fw = new FileWriter(folderName + "/output.csv", true); //追記モード
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
