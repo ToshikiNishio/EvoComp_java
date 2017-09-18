@@ -34,23 +34,23 @@ public class GPSO implements Algorithm {
 
         makeFiles(run);
 
-        SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
-        recordVariables(sub1);
+        SubSwarm swarm = new SubSwarm(SUB_SWARM_SIZE);
+        recordVariables(swarm);
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
-            sub1.updateVelocity(currentIW, C1, C2);
-            sub1.updatePosition();
-            sub1.evaluateSubSwarm();
+            swarm.updateVelocity(currentIW, C1, C2);
+            swarm.updatePosition();
+            swarm.evaluateSubSwarm();
 
             currentIW = MAX_IW - (MAX_IW -MIN_IW)
                         * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
 
             Utility.cur_generation++;
 
-            recordVariables(sub1);
+            recordVariables(swarm);
         }
         /* Input best particle for Output */
-        Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
-        //Utility.printFinalBest(run, sub1);
+        Utility.stack_hist_best_fit[run] = swarm.getLbest_fitness();
+        //Utility.printFinalBest(run, swarm);
         writeFiles();
     }
 
@@ -182,15 +182,15 @@ public class GPSO implements Algorithm {
         try {
             FileWriter fw = new FileWriter(folderName + "/scatter.csv", true); //追記モード
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-            int size = recordPosition.size();
-            for (int ind =0; ind < size; ind++) {
+            int generation = recordPosition.size();
+            for (int gen =0; gen < generation; gen++) {
                 int par_ind = 0;
-                for (Particle par : recordPosition.get(ind).particles) {
-                    pw.print(recordGeneration.get(ind));
+                for (Particle par : recordPosition.get(gen).particles) {
+                    pw.print(recordGeneration.get(gen));
                     pw.print(",");
-                    pw.print(recordEvalTimes.get(ind));
+                    pw.print(recordEvalTimes.get(gen));
                     pw.print(",");
-                    pw.print(recordGInd.get(ind));
+                    pw.print(recordGInd.get(gen));
                     pw.print(",");
                     pw.print(par_ind++);
                     pw.print(",");
