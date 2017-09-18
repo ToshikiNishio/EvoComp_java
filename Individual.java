@@ -1,7 +1,7 @@
 /**
  * Created by toshiki on 2017/06/24.
  */
-public class Individual {
+public class Individual implements Cloneable{
     double[] positon = new double[Utility.getDIMENSION()];
     double current_fitness;
 
@@ -41,6 +41,19 @@ public class Individual {
         System.out.print("Current_fitness = ");
         Utility.printShortNum(current_fitness);
         System.out.println();
+    }
+
+    @Override
+    public Individual clone(){
+        Individual ret = null;
+
+        try{
+            ret = (Individual)super.clone();
+            ret.positon = this.positon.clone();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ret;
     }
 
 }

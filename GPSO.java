@@ -150,7 +150,11 @@ public class GPSO implements Algorithm {
             pw.print("individual_index");
             pw.print(",");
             for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
-                pw.print("Dim" + dim);
+                pw.print("X" + dim);
+                pw.print(",");
+            }
+            for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
+                pw.print("pBest" + dim);
                 pw.print(",");
             }
             pw.println();
@@ -162,7 +166,13 @@ public class GPSO implements Algorithm {
     }
 
     private void recordScatter(SubSwarm swarm){
-        recordPosition.add(swarm);
+        SubSwarm tmp_swrm = new SubSwarm(0);
+
+        for (int ind = 0; ind < swarm.particles.size(); ind++) {
+            tmp_swrm.particles.add(swarm.particles.get(ind).clone());
+        }
+
+        recordPosition.add(tmp_swrm);
     }
 
     private void writeScatterFiles(){
@@ -181,6 +191,10 @@ public class GPSO implements Algorithm {
                     pw.print(",");
                     for (int dim = 0; dim < Utility.getDIMENSION(); dim++){
                         pw.print(par.positon[dim]);
+                        pw.print(",");
+                    }
+                    for (int dim = 0; dim < Utility.getDIMENSION(); dim++){
+                        pw.print(par.hist_best_pos[dim]);
                         pw.print(",");
                     }
                     pw.println();

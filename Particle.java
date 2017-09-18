@@ -1,7 +1,7 @@
 /**
  * Created by toshiki on 2017/06/28.
  */
-public class Particle extends Individual{
+public class Particle extends Individual implements Cloneable{
     double hist_best_fit;
     double[] hist_best_pos = new double[Utility.getDIMENSION()];
     double[] velocity = new double[Utility.getDIMENSION()];
@@ -60,5 +60,19 @@ public class Particle extends Individual{
     public void printHistBestFitness() {
         System.out.print("His_best_fitness = ");
         Utility.printShortNum(hist_best_fit);
+    }
+
+    @Override
+    public Particle clone(){
+        Particle ret = null;
+
+        try{
+            ret = (Particle)super.clone();
+            ret.hist_best_pos = this.hist_best_pos.clone();
+            ret.velocity = this.velocity.clone();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ret;
     }
 }
