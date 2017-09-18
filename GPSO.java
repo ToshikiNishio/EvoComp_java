@@ -24,7 +24,6 @@ public class GPSO implements Algorithm {
     public ArrayList<Integer> recordEvalTimes =new ArrayList<Integer>();
     public ArrayList<Double> recordInertiaWeight =new ArrayList<Double>();
     public ArrayList<Double> recordBestFitness =new ArrayList<Double>();
-    //public ArrayList<ArrayList<Double[]>> recordPosition = new ArrayList();
     public ArrayList<SubSwarm> recordPosition = new ArrayList<>();
     public ArrayList<Integer> recordGInd = new ArrayList<>();
 
@@ -35,8 +34,7 @@ public class GPSO implements Algorithm {
         SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
         currentIW = MAX_IW;
 
-        makeParameterFiles(run);
-        makeScatterFiles(run);
+        makeFiles(run);
 
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
             sub1.updateVelocity(currentIW, C1, C2);
@@ -49,19 +47,28 @@ public class GPSO implements Algorithm {
             Utility.cur_generation++;
 
             recordVariables(sub1);
-            recordScatter(sub1);
-            //writeFile();
         }
         /* Input best particle for Output */
         Utility.stack_hist_best_fit[run] = sub1.getLbest_fitness();
         //Utility.printFinalBest(run, sub1);
-        writeParameterFiles();
-        writeScatterFiles();
+        writeFiles();
     }
 
     /*
     * Follow method are to make csv files.
     * */
+    private void makeFiles(int run){
+        makeParameterFiles(run);
+        makeScatterFiles(run);
+    }
+
+    private void writeFiles(){
+        writeParameterFiles();
+        writeScatterFiles();
+
+        clearRecord();
+    }
+
     private void makeParameterFiles(int run){
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
@@ -92,43 +99,6 @@ public class GPSO implements Algorithm {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-
-    private void writeParameterFiles(){
-        try {
-            FileWriter fw = new FileWriter(folderName + "/output.csv", true); //追記モード
-            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-            int size = recordGeneration.size();
-            for (int ind =0; ind < size; ind++) {
-                pw.print(recordGeneration.get(ind));
-                pw.print(",");
-                pw.print(recordEvalTimes.get(ind));
-                pw.print(",");
-                pw.print(recordBestFitness.get(ind));
-                pw.print(",");
-                pw.print(recordInertiaWeight.get(ind));
-                pw.print(",");
-                pw.print(C1);
-                pw.print(",");
-                pw.print(C2);
-                pw.println();
-            }
-            //Close file
-            pw.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-//        recordGeneration.clear();
-//        recordEvalTimes.clear();
-//        recordBestFitness.clear();
-//        recordInertiaWeight.clear();
-    }
-
-    private void recordVariables(SubSwarm swarm){
-        recordGeneration.add(Utility.cur_generation);
-        recordEvalTimes.add(Utility.cur_func_eval);
-        recordInertiaWeight.add(currentIW);
-        recordBestFitness.add(swarm.getLbest_fitness());
     }
 
     private void makeScatterFiles(int run){
@@ -168,14 +138,44 @@ public class GPSO implements Algorithm {
         }
     }
 
-    private void recordScatter(SubSwarm swarm){
+    private void recordVariables(SubSwarm swarm){
+        recordGeneration.add(Utility.cur_generation);
+        recordEvalTimes.add(Utility.cur_func_eval);
+        recordInertiaWeight.add(currentIW);
+        recordBestFitness.add(swarm.getLbest_fitness());
         recordGInd.add(swarm.getLbest_index());
-
+        /* Record swarm to record positions */
         SubSwarm tmp_swrm = new SubSwarm(0);
         for (int ind = 0; ind < swarm.particles.size(); ind++) {
             tmp_swrm.particles.add(swarm.particles.get(ind).clone());
         }
         recordPosition.add(tmp_swrm);
+    }
+
+    private void writeParameterFiles(){
+        try {
+            FileWriter fw = new FileWriter(folderName + "/output.csv", true); //追記モード
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+            int size = recordGeneration.size();
+            for (int ind =0; ind < size; ind++) {
+                pw.print(recordGeneration.get(ind));
+                pw.print(",");
+                pw.print(recordEvalTimes.get(ind));
+                pw.print(",");
+                pw.print(recordBestFitness.get(ind));
+                pw.print(",");
+                pw.print(recordInertiaWeight.get(ind));
+                pw.print(",");
+                pw.print(C1);
+                pw.print(",");
+                pw.print(C2);
+                pw.println();
+            }
+            //Close file
+            pw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void writeScatterFiles(){
@@ -210,6 +210,10 @@ public class GPSO implements Algorithm {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    /* To initialize next run record variables, we clear it. */
+    private void clearRecord(){
         recordPosition.clear();
         recordGeneration.clear();
         recordEvalTimes.clear();
