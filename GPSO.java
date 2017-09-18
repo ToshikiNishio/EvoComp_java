@@ -30,12 +30,12 @@ public class GPSO implements Algorithm {
     public void run(int run){
         Utility.cur_func_eval = 0;
         Utility.cur_generation = 0;
-
-        SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
         currentIW = MAX_IW;
 
         makeFiles(run);
 
+        SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
+        recordVariables(sub1);
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
             sub1.updateVelocity(currentIW, C1, C2);
             sub1.updatePosition();
