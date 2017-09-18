@@ -26,6 +26,7 @@ public class GPSO implements Algorithm {
     public ArrayList<Double> recordBestFitness =new ArrayList<Double>();
     //public ArrayList<ArrayList<Double[]>> recordPosition = new ArrayList();
     public ArrayList<SubSwarm> recordPosition = new ArrayList<>();
+    public ArrayList<Integer> recordGInd = new ArrayList<>();
 
     public void run(int run){
         Utility.cur_func_eval = 0;
@@ -147,6 +148,8 @@ public class GPSO implements Algorithm {
             pw.print(",");
             pw.print("eval_times");
             pw.print(",");
+            pw.print("G_index");
+            pw.print(",");
             pw.print("individual_index");
             pw.print(",");
             for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
@@ -166,12 +169,12 @@ public class GPSO implements Algorithm {
     }
 
     private void recordScatter(SubSwarm swarm){
-        SubSwarm tmp_swrm = new SubSwarm(0);
+        recordGInd.add(swarm.getLbest_index());
 
+        SubSwarm tmp_swrm = new SubSwarm(0);
         for (int ind = 0; ind < swarm.particles.size(); ind++) {
             tmp_swrm.particles.add(swarm.particles.get(ind).clone());
         }
-
         recordPosition.add(tmp_swrm);
     }
 
@@ -186,6 +189,8 @@ public class GPSO implements Algorithm {
                     pw.print(recordGeneration.get(ind));
                     pw.print(",");
                     pw.print(recordEvalTimes.get(ind));
+                    pw.print(",");
+                    pw.print(recordGInd.get(ind));
                     pw.print(",");
                     pw.print(par_ind++);
                     pw.print(",");
