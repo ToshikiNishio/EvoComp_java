@@ -58,11 +58,17 @@ public class GPSO implements Algorithm {
     * Follow method are to make csv files.
     * */
     private void makeFiles(int run){
+        if (!Utility.csvOutputFlg) {
+            return;
+        }
         makeParameterFiles(run);
         makeScatterFiles(run);
     }
 
     private void writeFiles(){
+        if (!Utility.csvOutputFlg) {
+            return;
+        }
         writeParameterFiles();
         writeScatterFiles();
 
@@ -139,6 +145,10 @@ public class GPSO implements Algorithm {
     }
 
     private void recordVariables(SubSwarm swarm){
+        if (!Utility.csvOutputFlg) {
+            return;
+        }
+
         recordGeneration.add(Utility.cur_generation);
         recordEvalTimes.add(Utility.cur_func_eval);
         recordInertiaWeight.add(currentIW);

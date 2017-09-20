@@ -27,6 +27,7 @@ public class Utility {
         Utility.date = new Date();
         date.toString();
     }
+    public static boolean csvOutputFlg = false;
     /* Set Parameter */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
         Utility.MAX_FUNC_EVAL = MAX_FUNC_EVAL;
@@ -136,18 +137,23 @@ public class Utility {
         System.out.println();
         printStarLine();
     }
-    public static void printShortNum(double num){
+
+    public static String returnShortNum(double num){
         double threshhold = 1.0;
         DecimalFormat zero = new DecimalFormat("0");
         DecimalFormat dec = new DecimalFormat("0.00");
         DecimalFormat exp = new DecimalFormat("0.00E0");
 
         if (Math.abs(num) == 0)
-            System.out.print(zero.format(num));
+            return zero.format(num);
         else if (Math.abs(num) < threshhold)
-            System.out.print(exp.format(num));
+            return exp.format(num);
         else
-            System.out.print(dec.format(num));
+            return dec.format(num);
+    }
+
+    public static void printShortNum(double num){
+        System.out.print(returnShortNum(num));
     }
     public static void printHourMinuteSecond(long milliSecond){
         long second = TimeUnit.MILLISECONDS.toSeconds(milliSecond) % 60;
