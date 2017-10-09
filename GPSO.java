@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 
 public class GPSO implements Algorithm {
+    public GPSO(){
+        printParameters();
+    }
+
     /* Parameter Settings */
     double MAX_IW = 0.9;   //Maximum inertia weight
     double MIN_IW = 0.4;   //Minimum inertia weight
@@ -54,6 +58,41 @@ public class GPSO implements Algorithm {
         writeFiles();
     }
 
+    public void printParameters() {
+        Utility.printLine();
+        System.out.println("Maximum inertia weight = " + MAX_IW);
+        System.out.println("Minimum inertia weight = " + MIN_IW);
+        System.out.println("C1 = " + C1);
+        System.out.println("C2 = " + C2);
+        System.out.println("Swarm size = " + SUB_SWARM_SIZE);
+        Utility.printLine();
+        String className = new Object(){}.getClass().getEnclosingClass().getName();
+        folderName = "/Users/toshiki/Output/" + Utility.date + "/" + className;
+        File newfile = new File(folderName);
+        newfile.mkdirs();
+        /* Make Parameter setting file */
+        try {
+            FileWriter fw = new FileWriter(folderName + "/ParameterSetting.txt", false); //上書きモード
+            //Write header
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+            pw.print("Maximum inertia weight = " + MAX_IW);
+            pw.println();
+            pw.print("Minimum inertia weight = " + MIN_IW);
+            pw.println();
+            pw.print("C1 = " + C1);
+            pw.println();
+            pw.print("C2 = " + C2);
+            pw.println();
+            pw.print("Swarm size = " + SUB_SWARM_SIZE);
+            pw.println();
+
+            //Close file
+            pw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
     /*
     * Follow method are to make csv files.
     * */

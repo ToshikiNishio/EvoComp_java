@@ -3,12 +3,11 @@
  */
 public class EvolutionaryComputing {
     public static void main(String[] args) throws Exception{
+        Utility.getDate();
         Utility.setMAX_FUNC_EVAL(200000);
         Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
         AlgContext algContext = new AlgContext(new GPSO());
-
-        Utility.getDate();
 
         for (ProblemUtil.ProblemID problem : ProblemUtil.ProblemID.values()) {
             if (problem.ordinal() < 12) {
