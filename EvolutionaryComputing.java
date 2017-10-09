@@ -18,7 +18,7 @@ public class EvolutionaryComputing {
                     Utility.setRandSeed(1234 + run);
                     algContext.run(run);
                 }
-                Utility.printOutputPara(problem);
+                Utility.printResult(problem);
                 System.out.println();
             }
         }

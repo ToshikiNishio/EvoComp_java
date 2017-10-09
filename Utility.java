@@ -120,7 +120,7 @@ public class Utility {
                 max = fit;
         }
     }
-    public static void printOutputPara(ProblemUtil.ProblemID problemID){
+    public static void printResult(ProblemUtil.ProblemID problemID){
         calcOutputPara();
 
         printStarLine();
@@ -181,7 +181,7 @@ public class Utility {
         folderName = "/Users/toshiki/Output/" + Utility.date;
         File newfile = new File(folderName);
         newfile.mkdirs();
-        /* Make Parameter setting file */
+        /* Make Experimental setting file */
         try {
             FileWriter fw = new FileWriter(folderName + "/ExperimentalSetting.txt", false); //上書きモード
             //Write header
