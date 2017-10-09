@@ -12,6 +12,8 @@ public class AlgContext {
         this.algorithm = algorithm;
     }
 
+    public Algorithm getAlgorithm() { return algorithm; }
+
     public void run(int run){
         algorithm.run(run);
     }

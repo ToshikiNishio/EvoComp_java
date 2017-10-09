@@ -70,8 +70,11 @@ public class Utility {
     public static void printindLine(int num){
         System.out.println(String.format("----- ind = " + "%05d" + " ---------------------------------------------------", num));
     }
+    public static String returnStarLine(){
+        return "********************************************************************************************";
+    }
     public static void printStarLine(){
-        System.out.println("********************************************************************************************");
+        System.out.println(returnStarLine());
     }
     public static void printDevideGeneration(int curGen, int curEval ,int lbestInd, double lbestFit){
         System.out.println(String.format("***** Generation = " + "%7d" + " *** Evaluation = " + "%9d" + " *** lbestIndex = " + "%3d" +
@@ -120,7 +123,7 @@ public class Utility {
                 max = fit;
         }
     }
-    public static void printResult(ProblemUtil.ProblemID problemID){
+    public static void printResult(ProblemUtil.ProblemID problemID, String algName){
         calcOutputPara();
 
         printStarLine();
@@ -137,6 +140,38 @@ public class Utility {
         printHourMinuteSecond(run_time);
         System.out.println();
         printStarLine();
+        printResultTxt(problemID, algName);
+    }
+
+    public static void printResultTxt(ProblemUtil.ProblemID problemID, String algName){
+        String folderName;
+        folderName = "/Users/toshiki/Output/" + Utility.date + "/" + algName;
+        File newfile = new File(folderName);
+        newfile.mkdirs();
+        try {
+            FileWriter fw = new FileWriter(folderName + "/ExperimentalSetting.txt", true); //追記モード
+            //Write header
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+            pw.println();
+            pw.print("*******************************************************************");
+            pw.println();
+            pw.print(problemID.name());
+            pw.println();
+            pw.print("Average = " + returnShortNum(ave));
+            pw.print("  Std = "  + returnShortNum(std));
+            pw.print("  Min = " + returnShortNum(min));
+            pw.print("  Max = " + returnShortNum(max));
+            pw.println();
+            pw.print(returnHourMinuteSecond(run_time));
+            pw.println();
+            pw.print("*******************************************************************");
+            //Close file
+            pw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+
     }
 
     public static String returnShortNum(double num){
@@ -156,12 +191,17 @@ public class Utility {
     public static void printShortNum(double num){
         System.out.print(returnShortNum(num));
     }
-    public static void printHourMinuteSecond(long milliSecond){
+
+    public static String returnHourMinuteSecond(long milliSecond){
         long second = TimeUnit.MILLISECONDS.toSeconds(milliSecond) % 60;
         long minute = TimeUnit.MILLISECONDS.toMinutes(milliSecond) % 60;
         long hour = TimeUnit.MILLISECONDS.toHours(milliSecond);
 
-        System.out.printf("%02dh : %02dm : %02ds", hour, minute, second);
+        return String.format("%02dh : %02dm : %02ds", hour, minute, second);
+    }
+
+    public static void printHourMinuteSecond(long milliSecond){
+        System.out.printf(returnHourMinuteSecond(milliSecond));
     }
     public static void printFinalBest(int run, SubSwarm sub){
         Utility.printLine();

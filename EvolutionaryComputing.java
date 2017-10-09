@@ -18,7 +18,8 @@ public class EvolutionaryComputing {
                     Utility.setRandSeed(1234 + run);
                     algContext.run(run);
                 }
-                Utility.printResult(problem);
+                String algName = String.valueOf(algContext.getAlgorithm());
+                Utility.printResult(problem, algName.substring(0, algName.indexOf("@")));
                 System.out.println();
             }
         }
