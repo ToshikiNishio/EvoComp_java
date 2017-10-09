@@ -1,3 +1,4 @@
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -168,6 +169,34 @@ public class Utility {
         sub.printBestParticle();
         System.out.println();
         Utility.printLine();
+    }
+
+    public static void printSettings(){
+        printLine();
+        System.out.println("Maximun Function Evaluations = " + MAX_FUNC_EVAL);
+        System.out.println("Dimension = " + DIMENSION);
+        System.out.println("RUN = " + RUN_MAX);
+        printLine();
+        String folderName;
+        folderName = "/Users/toshiki/Output/" + Utility.date;
+        File newfile = new File(folderName);
+        newfile.mkdirs();
+        /* Make Parameter setting file */
+        try {
+            FileWriter fw = new FileWriter(folderName + "/ExperimentalSetting.txt", false); //上書きモード
+            //Write header
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+            pw.print("Maximun Function Evaluations = " + MAX_FUNC_EVAL);
+            pw.println();
+            pw.print("Dimension = " + DIMENSION);
+            pw.println();
+            pw.print("RUN = " + RUN_MAX);
+            pw.println();
+            //Close file
+            pw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
 

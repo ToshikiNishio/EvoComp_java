@@ -7,6 +7,7 @@ public class EvolutionaryComputing {
         Utility.setMAX_FUNC_EVAL(200000);
         Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
+        Utility.printSettings();
         AlgContext algContext = new AlgContext(new GPSO());
 
         for (ProblemUtil.ProblemID problem : ProblemUtil.ProblemID.values()) {
