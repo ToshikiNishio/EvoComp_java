@@ -149,7 +149,7 @@ public class Utility {
         File newfile = new File(folderName);
         newfile.mkdirs();
         try {
-            FileWriter fw = new FileWriter(folderName + "/ExperimentalSetting.txt", true); //追記モード
+            FileWriter fw = new FileWriter(folderName + "/ExperimentalResult.txt", true); //追記モード
             //Write header
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
             pw.println();
