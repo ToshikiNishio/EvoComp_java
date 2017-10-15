@@ -29,6 +29,8 @@ public class Utility {
         date.toString();
     }
     public static boolean csvOutputFlg = false;
+    public static boolean outputParameterFlg = false;
+    public static boolean outputScatterFlg = false;
     /* Set Parameter */
     public static void setMAX_FUNC_EVAL(int MAX_FUNC_EVAL){
         Utility.MAX_FUNC_EVAL = MAX_FUNC_EVAL;
@@ -39,6 +41,9 @@ public class Utility {
     public static void setRUN_MAX(int RUN_MAX) {
         Utility.RUN_MAX = RUN_MAX;
     }
+    public static void setCsvOutputFlg(boolean flg){Utility.csvOutputFlg = flg;}
+    public static void setOuputParameterFlg(boolean flg){Utility.outputParameterFlg = flg;}
+    public static void setOutputScatterFlg(boolean flg){Utility.outputScatterFlg = flg;}
 
     /*Get Parameter*/
     public static int getDIMENSION() {return DIMENSION;}

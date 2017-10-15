@@ -100,16 +100,24 @@ public class GPSO implements Algorithm {
         if (!Utility.csvOutputFlg) {
             return;
         }
-        makeParameterFiles(run);
-        makeScatterFiles(run);
+        if (Utility.outputParameterFlg) {
+            makeParameterFiles(run);
+        }
+        if (Utility.outputScatterFlg) {
+            makeScatterFiles(run);
+        }
     }
 
     private void writeFiles(){
         if (!Utility.csvOutputFlg) {
             return;
         }
-        writeParameterFiles();
-        writeScatterFiles();
+        if (Utility.outputParameterFlg) {
+            writeParameterFiles();
+        }
+        if (Utility.outputScatterFlg) {
+            writeScatterFiles();
+        }
 
         clearRecord();
     }
