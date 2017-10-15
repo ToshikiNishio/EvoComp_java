@@ -19,7 +19,7 @@ public class GPSO implements Algorithm {
     double MIN_IW = 0.4;   //Minimum inertia weight
     double C1 = 2.0;       //Acceleration Coefficients 1
     double C2 = 2.0;       //Acceleration Coefficients 2
-    int    SUB_SWARM_SIZE = 20;
+    int    SWARM_SIZE = 20;
     /* Variable definition */
     String folderName;
     double currentIW;
@@ -38,7 +38,7 @@ public class GPSO implements Algorithm {
 
         makeFiles(run);
 
-        Swarm swarm = new Swarm(SUB_SWARM_SIZE);
+        Swarm swarm = new Swarm(SWARM_SIZE);
         recordVariables(swarm);
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
             swarm.updateVelocity(currentIW, C1, C2);
@@ -64,7 +64,7 @@ public class GPSO implements Algorithm {
         System.out.println("Minimum inertia weight = " + MIN_IW);
         System.out.println("C1 = " + C1);
         System.out.println("C2 = " + C2);
-        System.out.println("Swarm size = " + SUB_SWARM_SIZE);
+        System.out.println("Swarm size = " + SWARM_SIZE);
         Utility.printLine();
         String className = new Object(){}.getClass().getEnclosingClass().getName();
         folderName = "/Users/toshiki/Output/" + Utility.date + "/" + className;
@@ -83,7 +83,7 @@ public class GPSO implements Algorithm {
             pw.println();
             pw.print("C2 = " + C2);
             pw.println();
-            pw.print("Swarm size = " + SUB_SWARM_SIZE);
+            pw.print("Swarm size = " + SWARM_SIZE);
             pw.println();
 
             //Close file
