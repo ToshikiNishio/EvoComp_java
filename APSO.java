@@ -26,7 +26,7 @@ public class APSO implements Algorithm {
         Utility.cur_func_eval = 0;
         Utility.cur_generation = 0;
 
-        SubSwarm sub1 = new SubSwarm(SUB_SWARM_SIZE);
+        Swarm sub1 = new Swarm(SUB_SWARM_SIZE);
         double currentIW = MAX_IW;
         /* Acceleration Coefficients.
          * C[0] : c1, C[1] : c2 */
@@ -59,7 +59,7 @@ public class APSO implements Algorithm {
         //Utility.printFinalBest(run, sub1);
     }
 
-    private double calcEvoFactor(SubSwarm sub){
+    private double calcEvoFactor(Swarm sub){
         /* Step1 Calculate the mean distance of each particle "ind" to
         *  all the other particles. */
         int N = sub.particles.size();

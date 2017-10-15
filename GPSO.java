@@ -28,7 +28,7 @@ public class GPSO implements Algorithm {
     public ArrayList<Integer> recordEvalTimes =new ArrayList<Integer>();
     public ArrayList<Double> recordInertiaWeight =new ArrayList<Double>();
     public ArrayList<Double> recordBestFitness =new ArrayList<Double>();
-    public ArrayList<SubSwarm> recordPosition = new ArrayList<>();
+    public ArrayList<Swarm> recordPosition = new ArrayList<>();
     public ArrayList<Integer> recordGInd = new ArrayList<>();
 
     public void run(int run){
@@ -38,7 +38,7 @@ public class GPSO implements Algorithm {
 
         makeFiles(run);
 
-        SubSwarm swarm = new SubSwarm(SUB_SWARM_SIZE);
+        Swarm swarm = new Swarm(SUB_SWARM_SIZE);
         recordVariables(swarm);
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
             swarm.updateVelocity(currentIW, C1, C2);
@@ -183,7 +183,7 @@ public class GPSO implements Algorithm {
         }
     }
 
-    private void recordVariables(SubSwarm swarm){
+    private void recordVariables(Swarm swarm){
         if (!Utility.csvOutputFlg) {
             return;
         }
@@ -194,7 +194,7 @@ public class GPSO implements Algorithm {
         recordBestFitness.add(swarm.getLbest_fitness());
         recordGInd.add(swarm.getLbest_index());
         /* Record swarm to record positions */
-        SubSwarm tmp_swrm = new SubSwarm(0);
+        Swarm tmp_swrm = new Swarm(0);
         for (int ind = 0; ind < swarm.particles.size(); ind++) {
             tmp_swrm.particles.add(swarm.particles.get(ind).clone());
         }

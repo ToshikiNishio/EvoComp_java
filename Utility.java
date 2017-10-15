@@ -203,7 +203,7 @@ public class Utility {
     public static void printHourMinuteSecond(long milliSecond){
         System.out.printf(returnHourMinuteSecond(milliSecond));
     }
-    public static void printFinalBest(int run, SubSwarm sub){
+    public static void printFinalBest(int run, Swarm sub){
         Utility.printLine();
         System.out.println("run = " + run);
         sub.printBestParticle();
