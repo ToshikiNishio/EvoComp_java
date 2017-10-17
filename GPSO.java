@@ -55,6 +55,10 @@ public class GPSO implements Algorithm {
         writeFiles();
     }
 
+    /**************************************************************************************************************
+    *   Create Output File
+    * *************************************************************************************************************/
+
     public void printParameters() {
         Utility.printLine();
         System.out.println("Maximum inertia weight = " + MAX_IW);
