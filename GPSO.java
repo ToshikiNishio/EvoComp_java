@@ -67,7 +67,7 @@ public class GPSO implements Algorithm {
         System.out.println("Swarm size = " + SWARM_SIZE);
         Utility.printLine();
         String className = new Object(){}.getClass().getEnclosingClass().getName();
-        folderName = "/Users/toshiki/Output/" + Utility.date + "/" + className;
+        folderName = Utility.OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + className;
         File newfile = new File(folderName);
         newfile.mkdirs();
         /* Make Parameter setting file */
@@ -125,7 +125,7 @@ public class GPSO implements Algorithm {
     private void makeParameterFiles(int run){
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
-        folderName = "/Users/toshiki/Output/" + Utility.date + "/" + className +
+        folderName = Utility.OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + className +
                                     "/" + ProblemUtil.getProb_obj() + "/RUN" + run;
         File newfile = new File(folderName);
         newfile.mkdirs();
@@ -157,7 +157,7 @@ public class GPSO implements Algorithm {
     private void makeScatterFiles(int run){
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
-        folderName = "/Users/toshiki/Output/" + Utility.date + "/" + className +
+        folderName = Utility.OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + className +
                 "/" + ProblemUtil.getProb_obj() + "/RUN" + run;
         File newfile = new File(folderName);
         newfile.mkdirs();

@@ -21,6 +21,7 @@ public class Utility {
     public static int cur_generation;
     /* Path */
     public static String SRC_PATH = "/Users/toshiki/IdeaProjects/EvoComp_java/src";
+    public static String OUTOUT_PATH = "/Users/toshiki";
     /* Definition */
     public static Sfmt Rnd;
     public static Date date;
@@ -150,7 +151,7 @@ public class Utility {
 
     public static void printResultTxt(ProblemUtil.ProblemID problemID, String algName){
         String folderName;
-        folderName = "/Users/toshiki/Output/" + Utility.date + "/" + algName;
+        folderName = OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + algName;
         File newfile = new File(folderName);
         newfile.mkdirs();
         try {
@@ -223,7 +224,7 @@ public class Utility {
         System.out.println("RUN = " + RUN_MAX);
         printLine();
         String folderName;
-        folderName = "/Users/toshiki/Output/" + Utility.date;
+        folderName = OUTOUT_PATH + "/" + "Output/" + Utility.date;
         File newfile = new File(folderName);
         newfile.mkdirs();
         /* Make Experimental setting file */
