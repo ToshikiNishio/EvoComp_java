@@ -17,4 +17,8 @@ public class AlgContext {
     public void run(int run){
         algorithm.run(run);
     }
+
+    public void printParameters(){
+        algorithm.printParameters();
+    }
 }

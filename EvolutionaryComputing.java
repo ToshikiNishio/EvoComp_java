@@ -8,10 +8,13 @@ public class EvolutionaryComputing {
         Utility.setDIMENSION(30);
         Utility.setRUN_MAX(30);
         Utility.printSettings();
-        AlgContext algContext = new AlgContext(new GPSO());
+
         Utility.setCsvOutputFlg(true);
         Utility.setOuputParameterFlg(true);
         Utility.setOutputScatterFlg(false);
+
+        AlgContext algContext = new AlgContext(new GPSO());
+        algContext.printParameters();
 
         for (ProblemUtil.ProblemID problem : ProblemUtil.ProblemID.values()) {
             if (problem.ordinal() < 12) {

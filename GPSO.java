@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 
 public class GPSO implements Algorithm {
-    public GPSO(){
-        printParameters();
-    }
 
     /* Parameter Settings */
     double MAX_IW = 0.9;   //Maximum inertia weight

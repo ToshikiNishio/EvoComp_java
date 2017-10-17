@@ -3,4 +3,5 @@
  */
 public interface Algorithm {
     public abstract void run(int run);
+    public abstract void printParameters();
 }
