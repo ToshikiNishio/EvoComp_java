@@ -127,7 +127,7 @@ public class GPSO implements Algorithm {
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
         folderName = Utility.OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + className +
-                                    "/" + ProblemUtil.getProb_obj() + "/RUN" + run;
+                                                        "/" + ProblemUtil.getProb_obj() + "/RUN" + run;
         File newfile = new File(folderName);
         newfile.mkdirs();
         /* Make csv file */
@@ -136,17 +136,13 @@ public class GPSO implements Algorithm {
             FileWriter fw = new FileWriter(folderName + "/output.csv", false); //上書きモード
             //Write header
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-            pw.print("Generation");
-            pw.print(",");
-            pw.print("eval_times");
-            pw.print(",");
-            pw.print("Best_fitness");
-            pw.print(",");
-            pw.print("inertia_weight");
-            pw.print(",");
-            pw.print("c1");
-            pw.print(",");
-            pw.print("c2");
+            Utility.writeValue(pw, "Generation");
+            Utility.writeValue(pw, "eval_times");
+            Utility.writeValue(pw, "Best_fitness");
+            Utility.writeValue(pw, "inertia_weight");
+            Utility.writeValue(pw, "c1");
+            Utility.writeValue(pw, "c2");
+
             pw.println();
             //Close file
             pw.close();
@@ -168,22 +164,17 @@ public class GPSO implements Algorithm {
             FileWriter fw = new FileWriter(folderName + "/scatter.csv", false); //上書きモード
             //Write header
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-            pw.print("Generation");
-            pw.print(",");
-            pw.print("eval_times");
-            pw.print(",");
-            pw.print("G_index");
-            pw.print(",");
-            pw.print("individual_index");
-            pw.print(",");
+            Utility.writeValue(pw, "Generation");
+            Utility.writeValue(pw, "eval_times");
+            Utility.writeValue(pw, "G_index");
+            Utility.writeValue(pw, "individual_index");
             for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
-                pw.print("X" + dim);
-                pw.print(",");
+                Utility.writeValue(pw, "X" + dim);
             }
             for (int dim = 0; dim < Utility.getDIMENSION(); dim++) {
-                pw.print("pBest" + dim);
-                pw.print(",");
+                Utility.writeValue(pw, "pBest" + dim);
             }
+
             pw.println();
             //Close file
             pw.close();
@@ -216,17 +207,13 @@ public class GPSO implements Algorithm {
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
             int size = recordGeneration.size();
             for (int ind =0; ind < size; ind++) {
-                pw.print(recordGeneration.get(ind));
-                pw.print(",");
-                pw.print(recordEvalTimes.get(ind));
-                pw.print(",");
-                pw.print(recordBestFitness.get(ind));
-                pw.print(",");
-                pw.print(recordInertiaWeight.get(ind));
-                pw.print(",");
-                pw.print(C1);
-                pw.print(",");
-                pw.print(C2);
+                Utility.writeValue(pw, recordGeneration.get(ind));
+                Utility.writeValue(pw, recordEvalTimes.get(ind));
+                Utility.writeValue(pw, recordBestFitness.get(ind));
+                Utility.writeValue(pw, recordInertiaWeight.get(ind));
+                Utility.writeValue(pw, C1);
+                Utility.writeValue(pw, C2);
+
                 pw.println();
             }
             //Close file
@@ -244,22 +231,13 @@ public class GPSO implements Algorithm {
             for (int gen =0; gen < generation; gen++) {
                 int par_ind = 0;
                 for (Particle par : recordPosition.get(gen).particles) {
-                    pw.print(recordGeneration.get(gen));
-                    pw.print(",");
-                    pw.print(recordEvalTimes.get(gen));
-                    pw.print(",");
-                    pw.print(recordGInd.get(gen));
-                    pw.print(",");
-                    pw.print(par_ind++);
-                    pw.print(",");
-                    for (int dim = 0; dim < Utility.getDIMENSION(); dim++){
-                        pw.print(par.positon[dim]);
-                        pw.print(",");
-                    }
-                    for (int dim = 0; dim < Utility.getDIMENSION(); dim++){
-                        pw.print(par.hist_best_pos[dim]);
-                        pw.print(",");
-                    }
+                    Utility.writeValue(pw, recordGeneration.get(gen));
+                    Utility.writeValue(pw, recordEvalTimes.get(gen));
+                    Utility.writeValue(pw, recordGInd.get(gen));
+                    Utility.writeValue(pw, par_ind++);
+                    Utility.writeValue(pw, par.positon);
+                    Utility.writeValue(pw, par.hist_best_pos);
+
                     pw.println();
                 }
             }

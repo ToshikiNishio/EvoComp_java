@@ -244,5 +244,29 @@ public class Utility {
             ex.printStackTrace();
         }
     }
+
+    public static void writeValue(PrintWriter pw, int value){
+        pw.print(value + ",");
+    }
+
+    public static void writeValue(PrintWriter pw, double value){
+        pw.print(value + ",");
+    }
+
+    public static void writeValue(PrintWriter pw, String value){
+        pw.print(value + ",");
+    }
+
+    public static void writeValue(PrintWriter pw, int[] array){
+        for (int value : array) {
+            writeValue(pw, value);
+        }
+    }
+
+    public static void writeValue(PrintWriter pw, double[] array){
+        for (double value : array) {
+            writeValue(pw, value);
+        }
+    }
 }
 
