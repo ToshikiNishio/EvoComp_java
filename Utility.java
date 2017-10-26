@@ -147,6 +147,7 @@ public class Utility {
         System.out.println();
         printStarLine();
         printResultTxt(problemID, algName);
+        printResultCsv(problemID, algName);
     }
 
     public static void printResultTxt(ProblemUtil.ProblemID problemID, String algName){
@@ -176,8 +177,62 @@ public class Utility {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
 
+    public static void printResultCsv(ProblemUtil.ProblemID problemID, String algName){
+        String folderName;
+        folderName = OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + algName;
+        File newfile = new File(folderName);
+        newfile.mkdirs();
+        try {
+            FileWriter fw = new FileWriter(folderName + "/ExperimentalResult.csv", true); //追記モード
+            //Write header
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+            for (int line = 0; line < 4; line++) {
+                /* col = 0*/
+                if (line == 0){
+                    writeValue(pw, problemID.name());
+                }else {
+                    writeValue(pw, "");
+                }
+                /* col = 1*/
+                switch (line){
+                    case 0:
+                        writeValue(pw, "Mean");
+                        break;
+                    case 1:
+                        writeValue(pw, "Std");
+                        break;
+                    case 2:
+                        writeValue(pw, "Min");
+                        break;
+                    case 3:
+                        writeValue(pw, "Max");
+                        break;
+                }
+                /* col = 2*/
+                switch (line){
+                    case 0:
+                        writeValue(pw, returnShortNum(ave));
+                        break;
+                    case 1:
+                        writeValue(pw, returnShortNum(std));
+                        break;
+                    case 2:
+                        writeValue(pw, returnShortNum(min));
+                        break;
+                    case 3:
+                        writeValue(pw, returnShortNum(max));
+                        break;
+                }
 
+                pw.println();
+            }
+            //Close file
+            pw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static String returnShortNum(double num){
