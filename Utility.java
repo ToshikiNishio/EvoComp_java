@@ -2,6 +2,7 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by toshiki on 2017/06/24.
@@ -24,10 +25,12 @@ public class Utility {
     public static String OUTOUT_PATH = "/Users/toshiki";
     /* Definition */
     public static Sfmt Rnd;
-    public static Date date;
+    public static String date;
     public static void getDate(){
-        Utility.date = new Date();
-        date.toString();
+        Date d = new Date();
+        SimpleDateFormat d1 = new SimpleDateFormat("yyyy年MM月dd日 HH時mm分ss秒");
+        Utility.date = d1.format(d);
+        System.out.println(Utility.date);
     }
     public static boolean csvOutputFlg = false;
     public static boolean outputParameterFlg = false;
