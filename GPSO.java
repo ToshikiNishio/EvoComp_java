@@ -127,7 +127,7 @@ public class GPSO implements Algorithm {
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
         folderName = Utility.OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + className +
-                                                        "/" + ProblemUtil.getProb_obj() + "/RUN" + run;
+                                                        "/" + ProblemUtil.getProbID_Name() + "/RUN" + run;
         File newfile = new File(folderName);
         newfile.mkdirs();
         /* Make csv file */
@@ -155,7 +155,7 @@ public class GPSO implements Algorithm {
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
         folderName = Utility.OUTOUT_PATH + "/" + "Output/" + Utility.date + "/" + className +
-                "/" + ProblemUtil.getProb_obj() + "/RUN" + run;
+                "/" + ProblemUtil.getProbID_Name() + "/RUN" + run;
         File newfile = new File(folderName);
         newfile.mkdirs();
         /* Make csv file */

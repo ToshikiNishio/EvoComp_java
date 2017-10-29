@@ -18,6 +18,10 @@ public class ProblemUtil {
     private static void setProb_obj(ProblemID id){ProblemUtil.prob_obj = id;}
     public static ProblemID getProb_obj() { return prob_obj; }
 
+    public static String getProbID_Name(){
+        return prob_obj.ordinal() + "_" + prob_obj;
+    }
+
     /* Set Bounds from problemID and we can use method calcFitness() */
     public static void setProblemID(ProblemID id){
         setProb_obj(id);
