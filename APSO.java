@@ -55,6 +55,39 @@ public class APSO implements Algorithm {
         writeFiles();
     }
 
+    private double calcEvoFactor(Swarm swarm){
+        double[] meanDis = calcMeanDis(swarm);
+
+        return 0;//tmp
+    }
+
+    private double[] calcMeanDis(Swarm swarm){
+        /* Step1 Calculate the mean distance of each particle "ind" to
+        *  all the other particles. */
+        int N = swarm.particles.size();
+        double dis[][] = new double[N][N];
+        double meanDis[] = new double[N];
+
+        for (int ind1 = 0; ind1 < N; ind1++) {
+            for (int ind2 = 0; ind2 < ind1; ind2++) {
+                dis[ind2][ind1] = dis[ind1][ind2] =
+                        Utility.distance(swarm.particles.get(ind1),
+                                swarm.particles.get(ind2));
+            }
+            dis[ind1][ind1] = 0;
+        }
+
+        for (int ind1 = 0; ind1 < N; ind1++) {
+            double dsum = 0;
+            for (int ind2 = 0; ind2 < N; ind2++) {
+                dsum += dis[ind1][ind2];
+            }
+            meanDis[ind1] = dsum / (N - 1.0);
+        }
+
+        return meanDis;
+    }
+
     /**************************************************************************************************************
      *   Create Output File
      * *************************************************************************************************************/
