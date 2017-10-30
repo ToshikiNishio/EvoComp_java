@@ -55,8 +55,9 @@ public class APSO implements Algorithm {
         writeFiles();
     }
 
-    private double calcEvoFactor(Swarm swarm){
+    private double calcEvoState(Swarm swarm){
         double[] meanDis = calcMeanDis(swarm);
+        double evoFactor = calcEvoFac(meanDis, swarm.getLbest_index());
 
         return 0;//tmp
     }
@@ -88,6 +89,19 @@ public class APSO implements Algorithm {
         return meanDis;
     }
 
+    private double calcEvoFac(double[] meanDis, int BestInd){
+        double min = Utility.getMinFromArray(meanDis);
+        double max = Utility.getMaxFromArray(meanDis);
+        double evoFactor;
+        if (min == max){
+            evoFactor = 0;
+            System.out.println("Evolutionary Factor = 0 !!");
+        } else {
+            evoFactor = (meanDis[BestInd] - min) / (max - min);
+        }
+
+        return evoFactor;
+    }
     /**************************************************************************************************************
      *   Create Output File
      * *************************************************************************************************************/

@@ -72,6 +72,21 @@ public class Utility {
         }
         return Math.sqrt(sum);
     }
+    public static double getMinFromArray(double[] array){
+        double min = array[0];
+        for (double ele : array) {
+            min = Math.min(min, ele);
+        }
+        return min;
+    }
+
+    public static double getMaxFromArray(double[] array){
+        double max = array[0];
+        for (double ele : array) {
+            max = Math.max(max, ele);
+        }
+        return max;
+    }
 
     public static void printLine(){
         System.out.println("--------------------------------------------------------------------------------------------");
