@@ -13,7 +13,7 @@ public class EvolutionaryComputing {
         Utility.setOuputParameterFlg(true);
         Utility.setOutputScatterFlg(false);
 
-        AlgContext algContext = new AlgContext(new GPSO());
+        AlgContext algContext = new AlgContext(new APSO());
         algContext.printParameters();
 
         for (ProblemUtil.ProblemID problem : ProblemUtil.ProblemID.values()) {
