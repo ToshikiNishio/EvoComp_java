@@ -17,6 +17,20 @@ public class APSO implements Algorithm {
     double C1 = 2.0;       //Acceleration Coefficients 1
     double C2 = 2.0;       //Acceleration Coefficients 2
     int    SWARM_SIZE = 20;
+
+    enum EvolutionaryState{
+        Exploration     ( 1.0, -1.0),
+        Exploitation    ( 0.5, -0.5),
+        Convergence     ( 0.5,  0.5),
+        JumpingOut      (-1.0,  1.0);
+
+        double addC1;
+        double addC2;
+        EvolutionaryState(double addC1, double addC2) {
+            this.addC1 = addC1;
+            this.addC2 = addC2;
+        }
+    }
     /* Variable definition */
     String folderName;
     double currentIW;
@@ -55,11 +69,12 @@ public class APSO implements Algorithm {
         writeFiles();
     }
 
-    private double calcEvoState(Swarm swarm){
+    private EvolutionaryState calcEvoState(Swarm swarm){
         double[] meanDis = calcMeanDis(swarm);
         double evoFactor = calcEvoFac(meanDis, swarm.getLbest_index());
+        EvolutionaryState evoState = calcEvoState(evoFactor);
 
-        return 0;//tmp
+        return evoState;
     }
 
     private double[] calcMeanDis(Swarm swarm){
@@ -90,6 +105,7 @@ public class APSO implements Algorithm {
     }
 
     private double calcEvoFac(double[] meanDis, int BestInd){
+        /* Step2 Compute an "evolutionary factor"*/
         double min = Utility.getMinFromArray(meanDis);
         double max = Utility.getMaxFromArray(meanDis);
         double evoFactor;
@@ -101,6 +117,21 @@ public class APSO implements Algorithm {
         }
 
         return evoFactor;
+    }
+
+    private EvolutionaryState calcEvoState(double evoFactor){
+        /* Step3 Classify Evolutionary factor into one of four sets */
+        if (! (0 <= evoFactor && evoFactor <= 1) )
+            System.out.println("Error!! Invalid Evolutionary Factor: evoFactor = " + evoFactor);
+
+        if (evoFactor <= (3.5 / 15.0))
+            return EvolutionaryState.Convergence;
+        if (evoFactor <= 0.5)
+            return EvolutionaryState.Exploitation;
+        if (evoFactor <= 11.5 / 15.0)
+            return EvolutionaryState.Exploration;
+
+        return EvolutionaryState.JumpingOut;
     }
     /**************************************************************************************************************
      *   Create Output File
