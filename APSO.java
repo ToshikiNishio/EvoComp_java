@@ -52,6 +52,8 @@ public class APSO implements Algorithm {
         Swarm swarm = new Swarm(SWARM_SIZE);
         recordVariables(swarm);
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
+            adaptiveAC(swarm);
+
             swarm.updateVelocity(currentIW, C1, C2);
             swarm.updatePosition();
             swarm.evaluateSubSwarm();
@@ -69,12 +71,11 @@ public class APSO implements Algorithm {
         writeFiles();
     }
 
-    private EvolutionaryState calcEvoState(Swarm swarm){
+    private void adaptiveAC(Swarm swarm){
         double[] meanDis = calcMeanDis(swarm);
         double evoFactor = calcEvoFac(meanDis, swarm.getLbest_index());
         EvolutionaryState evoState = calcEvoState(evoFactor);
-
-        return evoState;
+        updateAC(evoState);
     }
 
     private double[] calcMeanDis(Swarm swarm){
@@ -132,6 +133,37 @@ public class APSO implements Algorithm {
             return EvolutionaryState.Exploration;
 
         return EvolutionaryState.JumpingOut;
+    }
+
+    /* Add delta to acceleration coefficients */
+    private void updateAC(EvolutionaryState evoState){
+        /* Adjustment on acceleration coefficients bounded by delta */
+        double delta1;
+        delta1 = 0.05 + Utility.rand() * 0.05;
+        delta1 = Utility.rand() * delta1;
+        C1 += delta1 * evoState.addC1;
+
+        double delta2;
+        delta2 = 0.05 + Utility.rand() * 0.05;
+        delta2 = Utility.rand() * delta2;
+        C2 += delta2 * evoState.addC2;
+
+        /* Clamp acceleration coefficients */
+        if (C1 <= 1.5)
+            C1 = 1.5;
+        if (C1 >= 2.5)
+            C1 = 2.5;
+        if (C2 <= 1.5)
+            C2 = 1.5;
+        if (C2 >= 2.5)
+            C2 = 2.5;
+
+        /* If sum is larger than 4.0, normalized */
+        double sum = C1 + C2;
+        if (sum > 4.0){
+            C1 = C1 / sum * 4.0;
+            C2 = C2 / sum * 4.0;
+        }
     }
     /**************************************************************************************************************
      *   Create Output File
