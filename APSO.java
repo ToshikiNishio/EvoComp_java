@@ -42,6 +42,8 @@ public class APSO implements Algorithm {
     public ArrayList<Double> recordBestFitness =new ArrayList<Double>();
     public ArrayList<Swarm> recordPosition = new ArrayList<>();
     public ArrayList<Integer> recordGInd = new ArrayList<>();
+    public ArrayList<Double> recordC1 = new ArrayList<>();
+    public ArrayList<Double> recordC2 = new ArrayList<>();
 
     public void run(int run){
         Utility.cur_func_eval = 0;
@@ -304,6 +306,8 @@ public class APSO implements Algorithm {
         recordInertiaWeight.add(currentIW);
         recordBestFitness.add(swarm.getLbest_fitness());
         recordGInd.add(swarm.getLbest_index());
+        recordC1.add(C1);
+        recordC2.add(C2);
         /* Record swarm to record positions */
         Swarm tmp_swrm = new Swarm(0);
         for (int ind = 0; ind < swarm.particles.size(); ind++) {
@@ -322,8 +326,8 @@ public class APSO implements Algorithm {
                 Utility.writeValue(pw, recordEvalTimes.get(ind));
                 Utility.writeValue(pw, recordBestFitness.get(ind));
                 Utility.writeValue(pw, recordInertiaWeight.get(ind));
-                Utility.writeValue(pw, C1);
-                Utility.writeValue(pw, C2);
+                Utility.writeValue(pw, recordC1.get(ind));
+                Utility.writeValue(pw, recordC2.get(ind));
 
                 pw.println();
             }
