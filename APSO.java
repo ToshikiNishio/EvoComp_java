@@ -32,7 +32,8 @@ public class APSO implements Algorithm {
         }
     }
     /* Variable definition */
-    String folderName;
+    String folderPassClass;
+    String folderPassRun;
     double currentIW;
     /* Record variables */
     public ArrayList<Integer> recordGeneration =new ArrayList<Integer>();
@@ -178,12 +179,12 @@ public class APSO implements Algorithm {
         System.out.println("Swarm size = " + SWARM_SIZE);
         Utility.printLine();
         String className = new Object(){}.getClass().getEnclosingClass().getName();
-        folderName = Utility.OUTPUT_PATH + Utility.date + "/" + className;
-        File newfile = new File(folderName);
+        folderPassClass = Utility.OUTPUT_PATH + Utility.date + "/" + className;
+        File newfile = new File(folderPassClass);
         newfile.mkdirs();
         /* Make Parameter setting file */
         try {
-            FileWriter fw = new FileWriter(folderName + "/ParameterSetting.txt", false); //上書きモード
+            FileWriter fw = new FileWriter(folderPassClass + "/ParameterSetting.txt", false); //上書きモード
             //Write header
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
             pw.print("Maximum inertia weight = " + MAX_IW);
@@ -236,14 +237,14 @@ public class APSO implements Algorithm {
     private void makeParameterFiles(int run){
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
-        folderName = Utility.OUTPUT_PATH + Utility.date + "/" + className +
+        folderPassRun = Utility.OUTPUT_PATH + Utility.date + "/" + className +
                 "/" + ProblemUtil.getProbID_Name() + "/RUN" + run;
-        File newfile = new File(folderName);
+        File newfile = new File(folderPassRun);
         newfile.mkdirs();
         /* Make csv file */
         try {
             //Make csv file
-            FileWriter fw = new FileWriter(folderName + "/output.csv", false); //上書きモード
+            FileWriter fw = new FileWriter(folderPassRun + "/output.csv", false); //上書きモード
             //Write header
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
             Utility.writeValue(pw, "Generation");
@@ -264,14 +265,14 @@ public class APSO implements Algorithm {
     private void makeScatterFiles(int run){
         /* Make Folder */
         String className = new Object(){}.getClass().getEnclosingClass().getName();
-        folderName = Utility.OUTPUT_PATH + Utility.date + "/" + className +
+        folderPassRun = Utility.OUTPUT_PATH + Utility.date + "/" + className +
                 "/" + ProblemUtil.getProbID_Name() + "/RUN" + run;
-        File newfile = new File(folderName);
+        File newfile = new File(folderPassRun);
         newfile.mkdirs();
         /* Make csv file */
         try {
             //Make csv file
-            FileWriter fw = new FileWriter(folderName + "/scatter.csv", false); //上書きモード
+            FileWriter fw = new FileWriter(folderPassRun + "/scatter.csv", false); //上書きモード
             //Write header
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
             Utility.writeValue(pw, "Generation");
@@ -313,7 +314,7 @@ public class APSO implements Algorithm {
 
     private void writeParameterFiles(){
         try {
-            FileWriter fw = new FileWriter(folderName + "/output.csv", true); //追記モード
+            FileWriter fw = new FileWriter(folderPassRun + "/output.csv", true); //追記モード
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
             int size = recordGeneration.size();
             for (int ind =0; ind < size; ind++) {
@@ -335,7 +336,7 @@ public class APSO implements Algorithm {
 
     private void writeScatterFiles(){
         try {
-            FileWriter fw = new FileWriter(folderName + "/scatter.csv", true); //追記モード
+            FileWriter fw = new FileWriter(folderPassRun + "/scatter.csv", true); //追記モード
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
             int generation = recordPosition.size();
             for (int gen =0; gen < generation; gen++) {
