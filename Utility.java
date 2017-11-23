@@ -88,9 +88,10 @@ public class Utility {
         return max;
     }
 
-    public static void printLine(){
-        System.out.println("--------------------------------------------------------------------------------------------");
+    public static String returnLine(){
+        return "--------------------------------------------------------------------------------------------";
     }
+    public static void printLine(){ System.out.println(returnLine()); }
     public static void printindLine(int num){
         System.out.println(String.format("----- ind = " + "%05d" + " ---------------------------------------------------", num));
     }

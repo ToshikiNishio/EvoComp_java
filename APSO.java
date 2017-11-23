@@ -34,6 +34,7 @@ public class APSO implements Algorithm {
     /* Variable definition */
     String folderPassClass;
     String folderPassRun;
+    String folderPassProb;
     double currentIW;
     /* Record variables */
     public ArrayList<Integer> recordGeneration =new ArrayList<Integer>();
@@ -68,7 +69,7 @@ public class APSO implements Algorithm {
         /* Input best particle for Output */
         Utility.stack_hist_best_fit[run] = swarm.getLbest_fitness();
         //Utility.printFinalBest(run, swarm);
-        writeFiles();
+        writeFiles(swarm, run);
     }
 
     private void adaptiveParam(Swarm swarm){
@@ -218,9 +219,10 @@ public class APSO implements Algorithm {
         if (Utility.outputScatterFlg) {
             makeScatterFiles(run);
         }
+        makeResultFile();
     }
 
-    private void writeFiles(){
+    private void writeFiles(Swarm swarm, int run){
         if (!Utility.csvOutputFlg) {
             return;
         }
@@ -230,6 +232,7 @@ public class APSO implements Algorithm {
         if (Utility.outputScatterFlg) {
             writeScatterFiles();
         }
+        writeResultFile(swarm, run);
 
         clearRecord();
     }
@@ -260,6 +263,15 @@ public class APSO implements Algorithm {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void makeResultFile(){
+        /* Make Folder */
+        String className = new Object(){}.getClass().getEnclosingClass().getName();
+        folderPassProb = Utility.OUTPUT_PATH + Utility.date + "/" + className +
+                "/" + ProblemUtil.getProbID_Name();
+        File newfile = new File(folderPassProb);
+        newfile.mkdirs();
     }
 
     private void makeScatterFiles(int run){
@@ -329,6 +341,31 @@ public class APSO implements Algorithm {
 
                 pw.println();
             }
+            //Close file
+            pw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void writeResultFile(Swarm swarm, int run){
+        try {
+            FileWriter fw = new FileWriter(folderPassProb + "/result.txt", true); //追記モード
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+
+            pw.println(Utility.returnLine());
+
+            pw.println("Run" + run);
+            pw.println("Fitness =" + swarm.getLbest_fitness() );
+
+            Particle bestPar = swarm.particles.get(swarm.getLbest_index());
+            pw.print("Hist_best_position = ");
+            for (double dim_pos : bestPar.hist_best_pos) {
+                pw.print(Utility.returnShortNum(dim_pos) + " ");
+            }
+            pw.println();
+
+            pw.println(Utility.returnLine());
             //Close file
             pw.close();
         } catch (IOException ex) {
