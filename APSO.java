@@ -55,14 +55,11 @@ public class APSO implements Algorithm {
         Swarm swarm = new Swarm(SWARM_SIZE);
         recordVariables(swarm);
         while (Utility.cur_func_eval < Utility.getMAX_FUNC_EVAL()) {
-            adaptiveAC(swarm);
+            adaptiveParam(swarm);
 
             swarm.updateVelocity(currentIW, C1, C2);
             swarm.updatePosition();
             swarm.evaluateSubSwarm();
-
-            currentIW = MAX_IW - (MAX_IW -MIN_IW)
-                    * Utility.cur_func_eval / Utility.getMAX_FUNC_EVAL();
 
             Utility.cur_generation++;
 
@@ -74,11 +71,12 @@ public class APSO implements Algorithm {
         writeFiles();
     }
 
-    private void adaptiveAC(Swarm swarm){
+    private void adaptiveParam(Swarm swarm){
         double[] meanDis = calcMeanDis(swarm);
         double evoFactor = calcEvoFac(meanDis, swarm.getLbest_index());
         EvolutionaryState evoState = calcEvoState(evoFactor);
         updateAC(evoState);
+        currentIW = 1.0 / (1.0 + 1.5 * Math.exp(-2.6 * evoFactor));
     }
 
     private double[] calcMeanDis(Swarm swarm){
